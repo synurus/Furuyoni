@@ -8,8 +8,7 @@ __pycache__/
 venv/
 
 # 학습 산출물 (재생성 가능, 매 실행마다 바뀜)
-data/loop/
-data/loop_onpolicy/
+data/loop*/
 data/league_records.jsonl
 data/selfplay_sample.jsonl
 

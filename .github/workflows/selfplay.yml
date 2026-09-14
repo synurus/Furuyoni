@@ -1,0 +1,81 @@
+name: 자기대국 루프
+
+# Actions 탭에서 "Run workflow" 버튼으로 실행한다. 자동 실행은 없다.
+on:
+  workflow_dispatch:
+    inputs:
+      iters:
+        description: 반복 횟수
+        default: "6"
+      gen_games:
+        description: 반복당 생성 판 수
+        default: "1000"
+      eval_games:
+        description: 반복당 평가 판 수
+        default: "120"
+      gen_rollouts:
+        description: 생성 시 NetMCBot 롤아웃
+        default: "12"
+      window:
+        description: 재학습 데이터 창 크기
+        default: "3"
+      workers:
+        description: 생성 병렬 프로세스 (러너는 4 vCPU)
+        default: "4"
+      eval_vs_mc:
+        description: 매 반복 mc48 챔피언과도 대결
+        type: boolean
+        default: true
+
+jobs:
+  selfplay:
+    runs-on: ubuntu-latest
+    # 작업당 6시간이 GitHub의 상한. 그 전에 끊어서 산출물을 확보한다.
+    timeout-minutes: 340
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: 룰 테스트
+        run: python tests/run_tests.py
+
+      - name: 자기대국 루프
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+          ITERS: ${{ inputs.iters }}
+          GEN_GAMES: ${{ inputs.gen_games }}
+          EVAL_GAMES: ${{ inputs.eval_games }}
+          GEN_ROLLOUTS: ${{ inputs.gen_rollouts }}
+          WINDOW: ${{ inputs.window }}
+          WORKERS: ${{ inputs.workers }}
+          EVAL_VS_MC: ${{ inputs.eval_vs_mc }}
+        run: |
+          set -eo pipefail
+          mkdir -p data/loop_ci
+          EXTRA=""
+          if [ "$EVAL_VS_MC" = "true" ]; then EXTRA="--eval-vs-mc"; fi
+          python -u -m ai.run_loop --onpolicy \
+            --iters "$ITERS" \
+            --gen-games "$GEN_GAMES" \
+            --eval-games "$EVAL_GAMES" \
+            --gen-rollouts "$GEN_ROLLOUTS" \
+            --window "$WINDOW" \
+            --workers "$WORKERS" \
+            $EXTRA \
+            --outdir data/loop_ci 2>&1 | tee data/loop_ci/run.log
+
+      # 시간 초과로 잘려도 그때까지의 모델과 로그는 건진다.
+      - name: 산출물 업로드
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: loop-${{ github.run_number }}
+          path: data/loop_ci/
