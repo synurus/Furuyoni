@@ -38,6 +38,7 @@ def _resolve_data_source() -> str:
 
 def log_iteration(
     iteration: int,
+    run_id: str | None = None,
     vs_mc: float | None = None,
     vs_heuristic: float | None = None,
     gen_games: int | None = None,
@@ -63,7 +64,7 @@ def log_iteration(
     ):
         if value is not None:
             props[key] = {"number": value}
-    for key, value in (("Commit", commit), ("Notes", notes)):
+    for key, value in (("RunId", run_id), ("Commit", commit), ("Notes", notes)):
         if value:
             props[key] = {"rich_text": [{"text": {"content": value}}]}
 

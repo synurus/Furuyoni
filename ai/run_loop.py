@@ -161,6 +161,7 @@ def main():
     history = []          # (iter, n_samples, val_acc, vs_heuristic, vs_mc48)
     t_all = time.time()
     commit = git_commit()
+    run_id = time.strftime("%Y%m%d-%H%M")   # 한 실행의 모든 반복에 같은 값
 
     for it in range(args.iters):
         t0 = time.time()
@@ -199,6 +200,7 @@ def main():
             from notion_log import log_iteration
             log_iteration(
                 iteration=it,
+                run_id=run_id,
                 vs_heuristic=ev["vs_heuristic"] * 100,
                 vs_mc=ev["vs_mc48"] * 100 if ev.get("vs_mc48") is not None else None,
                 gen_games=args.gen_games,
