@@ -40,8 +40,11 @@ def _zone_type_counts(state, pidx):
     return counts
 
 
-def _player_features(state, pidx):
-    """플레이어 한 명의 특징 (정규화된 float 리스트)와 이름."""
+def _player_features(state, pidx, hide_hand=False):
+    """플레이어 한 명의 특징 (정규화된 float 리스트)와 이름.
+
+    hide_hand=True면 손패/비장의 타입 구성을 0으로 채운다 (상대용).
+    """
     p = state.players[pidx]
     feats = []
     names = []
@@ -73,8 +76,12 @@ def _player_features(state, pidx):
     add("enhancements", len(p.enhancements) / 3.0)
     add("enh_tokens", sum(e.tokens for e in p.enhancements) / 10.0)
 
-    # 손패+비장 타입 구성
-    tc = _zone_type_counts(state, pidx)
+    # 손패+비장 타입 구성.
+    # 상대의 것은 실전에서 볼 수 없다. 예전에는 실제 값을 넣었는데, 학습은
+    # 진짜 손패로 하고 추론은 mcts.determinize()가 섞어놓은 가짜 손패로 하게 되어
+    # 이 다섯 칸이 추론 시점에 잡음이었다. 차원 유지를 위해 슬롯은 남기고 0으로 둔다.
+    tc = ({"attack": 0, "action": 0, "enhance": 0, "reaction": 0, "fullpower": 0}
+          if hide_hand else _zone_type_counts(state, pidx))
     add("n_attack", tc["attack"] / 7.0)
     add("n_action", tc["action"] / 7.0)
     add("n_enhance", tc["enhance"] / 7.0)
@@ -127,7 +134,7 @@ def encode_state(state, me: int):
 
     # ── 내 특징 → 상대 특징 ──
     mf, mn = _player_features(state, me)
-    of, on = _player_features(state, 1 - me)
+    of, on = _player_features(state, 1 - me, hide_hand=True)
     feats += mf
     names += ["my_" + n for n in mn]
     feats += of

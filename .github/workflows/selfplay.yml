@@ -8,11 +8,11 @@ on:
         description: 반복 횟수
         default: "6"
       gen_games:
-        description: 반복당 생성 판 수
-        default: "1000"
+        description: 반복당 생성 판 수 (4코어 러너 기준 판당 약 3.5초)
+        default: "600"
       eval_games:
-        description: 반복당 평가 판 수
-        default: "120"
+        description: 반복당 평가 판 수 (판당 약 4.3초)
+        default: "60"
       gen_rollouts:
         description: 생성 시 NetMCBot 롤아웃
         default: "12"
