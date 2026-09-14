@@ -41,7 +41,7 @@ import numpy as np
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "engine"))
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
-from setup import new_game, CORE4                       # noqa: E402
+from setup import new_game, new_game_2v2, CORE4        # noqa: E402
 from turn import play_turn                               # noqa: E402
 from ai.league import BOTS, _DirectDriver                # noqa: E402
 from ai.selfplay import generate                         # noqa: E402
@@ -51,14 +51,24 @@ from ai.net_mc_bot import NetMCBot                          # noqa: E402
 
 
 # ── 임의 에이전트 대전 (league.duel은 등록봇 이름만 받으므로 자체 구현) ──
-def duel_agents(make0, make1, n, seed_base=0, max_turns=200):
-    """make0/make1: seed->agent. n판 대결 → [p0승, p1승, 무]."""
+def duel_agents(make0, make1, n, seed_base=0, max_turns=200, two=False):
+    """make0/make1: seed->agent. n판 대결 → [p0승, p1승, 무].
+
+    two=True면 2여신 안전구축 게임으로 붙인다 (여신 배정도 시드로 결정).
+    """
     w = [0, 0, 0]
     for i in range(n):
         rng = random.Random(seed_base + i)
-        m0 = CORE4[i % len(CORE4)]
-        m1 = CORE4[(i // len(CORE4) + 1) % len(CORE4)]
-        state = new_game(m0, m1, seed=seed_base + i, first=(seed_base + i) % 2)
+        if two:
+            mr = random.Random((seed_base + i) ^ 0x5EED)
+            state = new_game_2v2(tuple(mr.sample(CORE4, 2)),
+                                 tuple(mr.sample(CORE4, 2)),
+                                 seed=seed_base + i, first=(seed_base + i) % 2)
+        else:
+            m0 = CORE4[i % len(CORE4)]
+            m1 = CORE4[(i // len(CORE4) + 1) % len(CORE4)]
+            state = new_game(m0, m1, seed=seed_base + i,
+                             first=(seed_base + i) % 2)
         agents = [make0(seed_base + i), make1(seed_base + i + 1)]
         driver = _DirectDriver(agents)
         for _ in range(max_turns):
@@ -95,6 +105,7 @@ def gen_iteration_data(it, prev_model_path, args):
                 "rollouts": args.gen_rollouts, "prune_top": 4,
                 "horizon": args.horizon}
     return generate_parallel(args.gen_games, spec, workers=args.workers,
+                             two_megami=args.two,
                              explore_eps=args.explore_eps,
                              seed_base=args.seed + it * 100000, verbose=True)
 
@@ -106,11 +117,12 @@ def evaluate_net(model, args):
                         prune_top=4, horizon=args.horizon)
     out = {}
     w = duel_agents(net_factory, lambda s: BOTS["heuristic"](s),
-                    args.eval_games, seed_base=args.seed + 777)
+                    args.eval_games, seed_base=args.seed + 777, two=args.two)
     out["vs_heuristic"] = w[0] / max(sum(w), 1)
     if args.eval_vs_mc:
         w2 = duel_agents(net_factory, lambda s: BOTS["mc48"](s),
-                         max(4, args.eval_games // 4), seed_base=args.seed + 999)
+                         max(4, args.eval_games // 4),
+                         seed_base=args.seed + 999, two=args.two)
         out["vs_mc48"] = w2[0] / max(sum(w2), 1)
     return out
 
@@ -144,6 +156,8 @@ def main():
                     help="iter>=1을 NetMCBot 자기대국으로 생성 (진짜 루프)")
     ap.add_argument("--eval-vs-mc", action="store_true",
                     help="매 반복 mc48과도 대결 (느림)")
+    ap.add_argument("--two", action="store_true",
+                    help="2여신 안전구축 게임으로 생성·평가 (최종 목표 형식)")
     ap.add_argument("--workers", type=int, default=1,
                     help="데이터 생성 병렬 프로세스 수 (로컬 코어 수 권장)")
     ap.add_argument("--seed", type=int, default=0)
@@ -151,7 +165,8 @@ def main():
     args = ap.parse_args()
 
     os.makedirs(args.outdir, exist_ok=True)
-    print(f"특징 차원: {feature_dim()} | 모드: "
+    print(f"특징 차원: {feature_dim()} | 게임: "
+          f"{'2여신 안전구축' if args.two else '단일여신 프리셋'} | 모드: "
           f"{'on-policy 반복' if args.onpolicy else '다양성 부트스트랩 반복'}")
     print(f"반복 {args.iters}회 | 판/반복 {args.gen_games} | "
           f"평가 {args.eval_games}판 | 워커 {args.workers}\n")
@@ -208,7 +223,8 @@ def main():
                 samples=len(train_set),
                 val_acc=val_acc,
                 commit=commit,
-                notes=f"{'on-policy' if args.onpolicy else 'bootstrap'} "
+                notes=f"{'2megami' if args.two else '1megami'} "
+                      f"{'on-policy' if args.onpolicy else 'bootstrap'} "
                       f"workers={args.workers} gen_rollouts={args.gen_rollouts}",
             )
         except Exception as e:

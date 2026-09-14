@@ -22,10 +22,14 @@ on:
       workers:
         description: 생성 병렬 프로세스 (러너는 4 vCPU)
         default: "4"
-      eval_vs_mc:
-        description: 매 반복 mc48 챔피언과도 대결
+      two_megami:
+        description: 2여신 안전구축 게임 (최종 목표 형식)
         type: boolean
         default: true
+      eval_vs_mc:
+        description: 매 반복 mc48과도 대결 (판수가 적어 참고용. 판정은 eval_champion 으로)
+        type: boolean
+        default: false
 
 jobs:
   selfplay:
@@ -57,11 +61,13 @@ jobs:
           WINDOW: ${{ inputs.window }}
           WORKERS: ${{ inputs.workers }}
           EVAL_VS_MC: ${{ inputs.eval_vs_mc }}
+          TWO_MEGAMI: ${{ inputs.two_megami }}
         run: |
           set -eo pipefail
           mkdir -p data/loop_ci
           EXTRA=""
-          if [ "$EVAL_VS_MC" = "true" ]; then EXTRA="--eval-vs-mc"; fi
+          if [ "$EVAL_VS_MC" = "true" ]; then EXTRA="$EXTRA --eval-vs-mc"; fi
+          if [ "$TWO_MEGAMI" = "true" ]; then EXTRA="$EXTRA --two"; fi
           python -u -m ai.run_loop --onpolicy \
             --iters "$ITERS" \
             --gen-games "$GEN_GAMES" \
