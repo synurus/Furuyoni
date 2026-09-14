@@ -243,7 +243,10 @@ def generate_parallel(n_games, spec, workers=1, two_megami=False,
         payloads.append((n, seed_base + g0, spec, two_megami,
                          max_turns, explore_eps))
         g0 += n
-    ctx = mp.get_context("fork")   # Linux 기본; numpy와 안전
+    # fork는 Linux 전용. Windows/macOS에서는 spawn으로 떨어진다.
+    # spawn 워커는 메인 모듈을 다시 import 하므로 진입점에 __main__ 가드가 필요하다.
+    method = "fork" if "fork" in mp.get_all_start_methods() else "spawn"
+    ctx = mp.get_context(method)
     with ctx.Pool(processes=min(workers, len(payloads))) as pool:
         chunks = pool.map(_gen_worker, payloads)
     samples = [s for c in chunks for s in c]
