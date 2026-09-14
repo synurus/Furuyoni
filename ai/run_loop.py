@@ -34,6 +34,7 @@ import time
 import json
 import random
 import argparse
+import subprocess
 
 import numpy as np
 
@@ -114,6 +115,17 @@ def evaluate_net(model, args):
     return out
 
 
+def git_commit():
+    """현재 커밋 해시 (실패하면 None)."""
+    try:
+        return subprocess.check_output(
+            ["git", "rev-parse", "--short", "HEAD"],
+            cwd=os.path.join(os.path.dirname(__file__), ".."),
+            text=True).strip()
+    except Exception:
+        return None
+
+
 def main():
     ap = argparse.ArgumentParser(description="반복 자기대국 루프")
     ap.add_argument("--iters", type=int, default=2)
@@ -148,6 +160,7 @@ def main():
     prev_model_path = None
     history = []          # (iter, n_samples, val_acc, vs_heuristic, vs_mc48)
     t_all = time.time()
+    commit = git_commit()
 
     for it in range(args.iters):
         t0 = time.time()
@@ -180,6 +193,24 @@ def main():
         print(f"[iter {it}] 샘플 {len(train_set):6d} | val_acc {val_acc:.3f} | "
               f"vs heuristic {ev['vs_heuristic']*100:5.1f}% | vs mc48 {vm} | "
               f"gen {t_gen:.0f}s train {t_train:.0f}s eval {t_eval:.0f}s")
+
+        # 4) Notion 실험 로그 (실패해도 루프는 계속 돈다)
+        try:
+            from notion_log import log_iteration
+            log_iteration(
+                iteration=it,
+                vs_heuristic=ev["vs_heuristic"] * 100,
+                vs_mc=ev["vs_mc48"] * 100 if ev.get("vs_mc48") is not None else None,
+                gen_games=args.gen_games,
+                window=args.window,
+                samples=len(train_set),
+                val_acc=val_acc,
+                commit=commit,
+                notes=f"{'on-policy' if args.onpolicy else 'bootstrap'} "
+                      f"workers={args.workers} gen_rollouts={args.gen_rollouts}",
+            )
+        except Exception as e:
+            print(f"  (Notion 기록 실패, 무시: {e})")
 
     # 요약
     print("\n=== 반복 요약 (NetMCBot 승률 추이) ===")

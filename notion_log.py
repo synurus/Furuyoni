@@ -42,6 +42,8 @@ def log_iteration(
     vs_heuristic: float | None = None,
     gen_games: int | None = None,
     window: int | None = None,
+    samples: int | None = None,
+    val_acc: float | None = None,
     commit: str | None = None,
     notes: str = "",
 ) -> str:
@@ -56,6 +58,8 @@ def log_iteration(
         ("VsHeuristic", vs_heuristic),
         ("GenGames", gen_games),
         ("Window", window),
+        ("Samples", samples),
+        ("ValAcc", val_acc),
     ):
         if value is not None:
             props[key] = {"number": value}
