@@ -8,8 +8,14 @@
 핵심:
 - score_card(): 카드 1장의 범용 가치 (데미지/거리/효과/여신 시너지)
 - pick_deck(): 통상 7 + 비장 3 선택. 거리 커버리지 + 메커니즘 보장 휴리스틱.
+
+rng를 주면 점수에 비례한 확률 표집으로 고른다 (rng=None이면 종전대로 점수
+상위를 확정적으로 자른다). 같은 여신 조합이 늘 같은 10장이 되던 문제를 없애
+자기대국 데이터에 덱 다양성을 만들고, "상대가 고를 법한 덱"의 분포를 제공한다.
+표집도 rng가 결정하므로 seed를 고정하면 그대로 재현된다.
 """
 
+import math
 import sys
 import os
 
@@ -17,6 +23,11 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "engine"))
 
 from setup import CARD_DB, cards_of  # noqa: E402
 from combat import parse_range, parse_damage  # noqa: E402
+
+
+# 표집 온도. 작을수록 점수 상위에 쏠리고, 클수록 고르게 섞인다.
+# 카드 점수는 대략 0~12 범위라 1.2면 상위권 안에서만 흔들린다.
+SAMPLE_TEMP = 1.2
 
 
 # ─── 여신별 "메커니즘 핵심" 카드 태그 ───
@@ -99,8 +110,11 @@ def pick_deck(meg_a, meg_b, rng=None):
     """
     통상 7 / 비장 3 선택.
     1) 각 카드 점수화
-    2) 통상: 상위 7장 (단, 각 여신 최소 2장 확보로 시너지 유지)
-    3) 비장: 상위 3장 (각 여신 최소 1장)
+    2) 통상: 7장 (단, 각 여신 최소 2장 확보로 시너지 유지)
+    3) 비장: 3장 (각 여신 최소 1장)
+
+    rng=None이면 점수 상위를 확정적으로 자른다 (종전 동작).
+    rng를 주면 점수에 비례해 확률적으로 뽑아 덱 다양성을 만든다.
     반환: (normal_picks[7], special_picks[3])
     """
     megamis = [meg_a, meg_b]
@@ -111,29 +125,43 @@ def pick_deck(meg_a, meg_b, rng=None):
         return score_card(cid, megamis)
 
     # ── 통상 7장 ──
-    normals = _balanced_pick(list(na), list(nb), 7, _score, min_each=2)
+    normals = _balanced_pick(list(na), list(nb), 7, _score, min_each=2, rng=rng)
     # ── 비장 3장 ──
-    specials = _balanced_pick(list(sa), list(sb), 3, _score, min_each=1)
+    specials = _balanced_pick(list(sa), list(sb), 3, _score, min_each=1, rng=rng)
     return normals, specials
 
 
-def _balanced_pick(pool_a, pool_b, k, score_fn, min_each):
-    """
-    두 여신 풀에서 k장 선택. 각 여신 최소 min_each장 보장 후 나머지는 점수순.
-    """
-    a_sorted = sorted(pool_a, key=score_fn, reverse=True)
-    b_sorted = sorted(pool_b, key=score_fn, reverse=True)
+def _take(pool, k, score_fn, rng):
+    """pool에서 k장 꺼낸다. rng=None이면 점수 상위, 아니면 점수 비례 표집."""
+    if rng is None:
+        return sorted(pool, key=score_fn, reverse=True)[:k]
     picked = []
-    # 최소 보장
-    picked += a_sorted[:min_each]
-    picked += b_sorted[:min_each]
-    # 나머지 후보를 점수순으로
-    rest = a_sorted[min_each:] + b_sorted[min_each:]
-    rest.sort(key=score_fn, reverse=True)
-    for cid in rest:
-        if len(picked) >= k:
-            break
-        picked.append(cid)
+    rest = list(pool)
+    while rest and len(picked) < k:
+        scores = [score_fn(c) for c in rest]
+        top = max(scores)
+        weights = [math.exp((s - top) / SAMPLE_TEMP) for s in scores]
+        r = rng.random() * sum(weights)
+        acc = 0.0
+        idx = len(rest) - 1
+        for i, w in enumerate(weights):
+            acc += w
+            if acc >= r:
+                idx = i
+                break
+        picked.append(rest.pop(idx))
+    return picked
+
+
+def _balanced_pick(pool_a, pool_b, k, score_fn, min_each, rng=None):
+    """
+    두 여신 풀에서 k장 선택. 각 여신 최소 min_each장 보장 후 나머지를 채운다.
+    """
+    picked = []
+    picked += _take(pool_a, min_each, score_fn, rng)
+    picked += _take(pool_b, min_each, score_fn, rng)
+    rest = [c for c in list(pool_a) + list(pool_b) if c not in picked]
+    picked += _take(rest, k - len(picked), score_fn, rng)
     return picked[:k]
 
 
