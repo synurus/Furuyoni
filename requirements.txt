@@ -1,2 +1,6 @@
+# 학습 트랙 (ai/features.py, train_value.py, valuenet_bot.py 등)
+numpy
+
+# Notion 실험 로깅 (notion_log.py)
 requests
 python-dotenv

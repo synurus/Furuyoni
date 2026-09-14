@@ -1,0 +1,6244 @@
+{
+  "01-yurina-o-n-1": {
+    "id": "01-yurina-o-n-1",
+    "megami": "yurina",
+    "name_ko": "참",
+    "name_jp": "斬",
+    "base_type": "normal",
+    "type": "attack",
+    "subtype": null,
+    "range": "3-4",
+    "damage": "3/1",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "",
+    "text_ko_additional": null,
+    "patch_verified": true,
+    "effects": [],
+    "patch_note": "재연: 변경 없음",
+    "card_flags": []
+  },
+  "01-yurina-o-n-2": {
+    "id": "01-yurina-o-n-2",
+    "megami": "yurina",
+    "name_ko": "일섬",
+    "name_jp": "一閃",
+    "base_type": "normal",
+    "type": "attack",
+    "subtype": null,
+    "range": "3-4",
+    "damage": "2/2",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "【상시】결사-당신의 라이프가 3 이하라면, 이 《공격》은 +1/+0이 된다.",
+    "text_ko_additional": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "constant",
+        "condition": "kessa",
+        "ops": [
+          {
+            "op": "buff",
+            "target": "this_attack",
+            "aura": 1,
+            "life": 0
+          }
+        ]
+      }
+    ],
+    "prev": {
+      "range": "3",
+      "damage": "2/2",
+      "text_ko": "【상시】결사-당신의 라이프가 3 이하라면, 이 《공격》은 +1/+0이 된다."
+    },
+    "patch_note": "재연: 사거리 3→3-4. 결사 효과 유지 (확인 완료)",
+    "card_flags": []
+  },
+  "01-yurina-o-n-3": {
+    "id": "01-yurina-o-n-3",
+    "megami": "yurina",
+    "name_ko": "자루치기",
+    "name_jp": "柄打ち",
+    "base_type": "normal",
+    "type": "attack",
+    "subtype": null,
+    "range": "1-2",
+    "damage": "2/1",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "【공격후】결사-당신의 라이프가 3 이하라면, 이번 턴에 당신이 수행하는 다음번 《공격》은 +1/+0 된다.",
+    "text_ko_additional": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "attack_after",
+        "condition": "kessa",
+        "ops": [
+          {
+            "op": "buff",
+            "target": "next_attack",
+            "aura": 1,
+            "life": 0,
+            "scope": "this_turn"
+          }
+        ]
+      }
+    ],
+    "patch_note": "재연: 변경 없음",
+    "card_flags": [],
+    "audit_note": "세션1 검수: 거리 2→1-2, 버프 대상 \"다른 여신\"→\"자신의 다음번 공격\"으로 정정"
+  },
+  "01-yurina-o-n-4": {
+    "id": "01-yurina-o-n-4",
+    "megami": "yurina",
+    "name_ko": "거합",
+    "name_jp": "居合",
+    "base_type": "normal",
+    "type": "attack",
+    "subtype": "fullpower",
+    "range": "2-4",
+    "damage": "4/3",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "【상시】현재 간격이 2 이하라면, 이 공격은 -1/-1이 된다.",
+    "text_ko_additional": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "constant",
+        "condition": {
+          "expr": "current_range <= 2"
+        },
+        "ops": [
+          {
+            "op": "buff",
+            "target": "this_attack",
+            "aura": -1,
+            "life": -1
+          }
+        ]
+      }
+    ],
+    "patch_note": "재연: 변경 없음",
+    "card_flags": []
+  },
+  "01-yurina-o-n-5": {
+    "id": "01-yurina-o-n-5",
+    "megami": "yurina",
+    "name_ko": "몸놀림",
+    "name_jp": "体捌き",
+    "base_type": "normal",
+    "type": "action",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": null,
+    "text_ko": "이번 턴에 당신이 수행하는 다음번 《공격》은 거리확대(원1)을 얻는다.\n당신의 라이프가 상대의 라이프보다 적다면, 기본행동을 2회까지 수행한다.",
+    "text_ko_additional": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": [
+          {
+            "op": "buff",
+            "target": "next_attack",
+            "gains": [
+              "far_extend_1"
+            ],
+            "scope": "this_turn"
+          }
+        ]
+      },
+      {
+        "trigger": "main",
+        "condition": {
+          "expr": "my_life < opp_life"
+        },
+        "ops": [
+          {
+            "op": "basic_actions",
+            "n": 2,
+            "up_to": true
+          }
+        ]
+      }
+    ],
+    "patch_note": "재연: 변경 없음",
+    "card_flags": []
+  },
+  "01-yurina-o-n-6": {
+    "id": "01-yurina-o-n-6",
+    "megami": "yurina",
+    "name_ko": "압도",
+    "name_jp": "圧気",
+    "base_type": "normal",
+    "type": "enhance",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": "2",
+    "text_ko": "빈틈\n【전개중】각 턴에 상대가 사용하는 첫 번째 《공격》의 오라 데미지를 1 경감한다.\n【파기시】공격『적정거리1-3、3/-』을 행한다.",
+    "text_ko_additional": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "deploy_during",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "appdo_reduce"
+          }
+        ]
+      },
+      {
+        "trigger": "destroy",
+        "condition": null,
+        "ops": [
+          {
+            "op": "attack",
+            "range": "1-3",
+            "dmg": "3/-",
+            "flags": []
+          }
+        ]
+      }
+    ],
+    "prev": {
+      "text_ko": "빈틈\n 【파기시】공격『적정거리1-4、3/-』을 행한다."
+    },
+    "patch_note": "재연: 전개중 효과 추가, 파기시 공격 거리 1-4→1-3",
+    "card_flags": [
+      "gap"
+    ]
+  },
+  "01-yurina-o-n-7": {
+    "id": "01-yurina-o-n-7",
+    "megami": "yurina",
+    "name_ko": "기염만장",
+    "name_jp": "気炎万丈",
+    "base_type": "normal",
+    "type": "enhance",
+    "subtype": "fullpower",
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": "4",
+    "text_ko": "【전개중】결사-당신의 라이프가 3 이하라면, 당신의 다른 여신에 의한 《공격》은 +1/+1이 되며 초극을 얻는다.",
+    "text_ko_additional": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "deploy_during",
+        "condition": "kessa",
+        "ops": [
+          {
+            "op": "buff",
+            "target": "my_attacks_other_megami",
+            "aura": 1,
+            "life": 1,
+            "gains": [
+              "chokyoku"
+            ],
+            "scope": "while_deployed"
+          }
+        ]
+      }
+    ],
+    "patch_note": "재연: 변경 없음",
+    "card_flags": []
+  },
+  "01-yurina-o-s-1": {
+    "id": "01-yurina-o-s-1",
+    "megami": "yurina",
+    "name_ko": "달그림자 떨어지니",
+    "name_jp": "月影落",
+    "base_type": "special",
+    "type": "attack",
+    "subtype": null,
+    "range": "3-4",
+    "damage": "4/4",
+    "cost": "7",
+    "capacity": null,
+    "text_ko": "",
+    "text_ko_additional": null,
+    "patch_verified": true,
+    "effects": [],
+    "patch_note": "재연: 변경 없음",
+    "card_flags": []
+  },
+  "01-yurina-o-s-2": {
+    "id": "01-yurina-o-s-2",
+    "megami": "yurina",
+    "name_ko": "해안에 파랑 일며",
+    "name_jp": "浦波嵐",
+    "base_type": "special",
+    "type": "attack",
+    "subtype": "reaction",
+    "range": "0-10",
+    "damage": "2/-",
+    "cost": "3",
+    "capacity": null,
+    "text_ko": "종단\n【공격후】대응한 《공격》은 -2/+0이 된다.",
+    "text_ko_additional": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "attack_after",
+        "condition": null,
+        "ops": [
+          {
+            "op": "buff",
+            "target": "reacted_attack",
+            "aura": -2,
+            "life": 0
+          }
+        ]
+      }
+    ],
+    "patch_note": "재연: 변경 없음",
+    "card_flags": [
+      "terminal"
+    ]
+  },
+  "01-yurina-o-s-3": {
+    "id": "01-yurina-o-s-3",
+    "megami": "yurina",
+    "name_ko": "쪽배에서 쉬노니",
+    "name_jp": "浮舟宿",
+    "base_type": "special",
+    "type": "action",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": "2",
+    "capacity": null,
+    "text_ko": "더스트→자신 오라：5   \n----  \n【즉재기】결사-당신의 라이프가 3 이하가 된다.",
+    "text_ko_additional": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": [
+          {
+            "op": "move",
+            "from": "dust",
+            "to": "my_aura",
+            "n": 5
+          }
+        ]
+      }
+    ],
+    "patch_note": "재연: 변경 없음",
+    "card_flags": [],
+    "saiki": {
+      "condition": "kessa_becomes",
+      "immediate": true
+    }
+  },
+  "01-yurina-o-s-4": {
+    "id": "01-yurina-o-s-4",
+    "megami": "yurina",
+    "name_ko": "아마네 유리나의 저력",
+    "name_jp": "天音揺波の底力",
+    "base_type": "special",
+    "type": "attack",
+    "subtype": "fullpower",
+    "range": "1-4",
+    "damage": "5/5",
+    "cost": "5",
+    "capacity": null,
+    "text_ko": "【상시】결사-당신의 라이프가 3 이하가 아니면, 이 카드는 사용 할 수 없다.",
+    "text_ko_additional": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "constant",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "unusable_unless_kessa"
+          }
+        ]
+      }
+    ],
+    "patch_note": "재연: 변경 없음",
+    "card_flags": []
+  },
+  "02-saine-o-n-1": {
+    "id": "02-saine-o-n-1",
+    "megami": "saine",
+    "name_ko": "팔방 휘두르기",
+    "name_jp": "八方振り",
+    "base_type": "normal",
+    "type": "attack",
+    "subtype": null,
+    "range": "4-5",
+    "damage": "2/1",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "【공격후】팔상-당신의 오라가 1 이하라면, 공격『적정거리4-5、2/1』을 행한다.",
+    "text_ko_additional": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "attack_after",
+        "condition": "hassou",
+        "ops": [
+          {
+            "op": "attack",
+            "range": "4-5",
+            "dmg": "2/1",
+            "flags": []
+          }
+        ]
+      }
+    ],
+    "patch_note": "재연: 변경 없음",
+    "card_flags": []
+  },
+  "02-saine-o-n-2": {
+    "id": "02-saine-o-n-2",
+    "megami": "saine",
+    "name_ko": "후려베기",
+    "name_jp": "薙斬り",
+    "base_type": "normal",
+    "type": "attack",
+    "subtype": null,
+    "range": "4-5",
+    "damage": "3/1",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "",
+    "text_ko_additional": null,
+    "patch_verified": true,
+    "effects": [],
+    "patch_note": "재연: 변경 없음",
+    "card_flags": [],
+    "audit_note": "세션1 검수: 텍스트 없음 확인 (dust==0 효과는 패치 예고만, 미적용 — 나무위키)"
+  },
+  "02-saine-o-n-3": {
+    "id": "02-saine-o-n-3",
+    "megami": "saine",
+    "name_ko": "무게추",
+    "name_jp": "石突",
+    "base_type": "normal",
+    "type": "attack",
+    "subtype": "reaction",
+    "range": "2-3",
+    "damage": "2/1",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "【공격후】팔상-당신의 오라가 1이하라면, 더스트→간격：1",
+    "text_ko_additional": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "attack_after",
+        "condition": "hassou",
+        "ops": [
+          {
+            "op": "move",
+            "from": "dust",
+            "to": "distance",
+            "n": 1
+          }
+        ]
+      }
+    ],
+    "patch_note": "재연: 변경 없음",
+    "card_flags": []
+  },
+  "02-saine-o-n-4": {
+    "id": "02-saine-o-n-4",
+    "megami": "saine",
+    "name_ko": "간파",
+    "name_jp": "見切り",
+    "base_type": "normal",
+    "type": "action",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": null,
+    "text_ko": "【상시】팔상-당신의 오라가 1이하라면, 이 카드를 《대응》을 갖는것과 같이 상대의 《공격》 에 끼어들어 사용 가능하다. \n간격⇔더스트：1",
+    "text_ko_additional": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "constant",
+        "condition": "hassou",
+        "ops": [
+          {
+            "op": "custom",
+            "id": "usable_as_reaction"
+          }
+        ]
+      },
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": [
+          {
+            "op": "move_either",
+            "a": "distance",
+            "b": "dust",
+            "n": 1
+          }
+        ]
+      }
+    ],
+    "patch_note": "재연: 변경 없음",
+    "card_flags": []
+  },
+  "02-saine-o-n-5": {
+    "id": "02-saine-o-n-5",
+    "megami": "saine",
+    "name_ko": "권역",
+    "name_jp": "圏域",
+    "base_type": "normal",
+    "type": "enhance",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": "2",
+    "text_ko": "【전개중】이 부여패 위에 있는 벚꽃 결정이 더스트로 움직일 때, 그 대신에 간격으로 이동한다.\n【전개중】달인의 간격이 1늘어난다.",
+    "text_ko_additional": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "deploy_during",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "kwonyeok_redirect"
+          }
+        ]
+      },
+      {
+        "trigger": "deploy_during",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "kwonyeok_master_range"
+          }
+        ]
+      }
+    ],
+    "patch_note": "재연: 변경 없음",
+    "card_flags": []
+  },
+  "02-saine-o-n-6": {
+    "id": "02-saine-o-n-6",
+    "megami": "saine",
+    "name_ko": "충음정",
+    "name_jp": "衝音晶",
+    "base_type": "normal",
+    "type": "enhance",
+    "subtype": "reaction",
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": "1",
+    "text_ko": "【전개시】대응한 《공격》은 -1/+0이 된다.\n【파기시】공격『적정거리 0-10、1/-、대응불가』를 행하고, 더스트→간격：1",
+    "text_ko_additional": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "deploy_start",
+        "condition": null,
+        "ops": [
+          {
+            "op": "buff",
+            "target": "reacted_attack",
+            "aura": -1,
+            "life": 0
+          }
+        ]
+      },
+      {
+        "trigger": "destroy",
+        "condition": null,
+        "ops": [
+          {
+            "op": "attack",
+            "range": "0-10",
+            "dmg": "1/-",
+            "flags": [
+              "no_reactions"
+            ]
+          },
+          {
+            "op": "move",
+            "from": "dust",
+            "to": "distance",
+            "n": 1
+          }
+        ]
+      }
+    ],
+    "patch_note": "재연: 변경 없음",
+    "card_flags": []
+  },
+  "02-saine-o-n-7": {
+    "id": "02-saine-o-n-7",
+    "megami": "saine",
+    "name_ko": "무음벽",
+    "name_jp": "無音壁",
+    "base_type": "normal",
+    "type": "enhance",
+    "subtype": "fullpower",
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": "5",
+    "text_ko": "【전개중】당신으로의 대미지를 해결 할 때, 이 카드 위에 놓인 벚꽃 결정을 당신의 오라에 있는 것처럼 취급한다.",
+    "text_ko_additional": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "deploy_during",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "muonheki_aura"
+          }
+        ]
+      }
+    ],
+    "patch_note": "재연: 변경 없음",
+    "card_flags": []
+  },
+  "02-saine-o-s-1": {
+    "id": "02-saine-o-s-1",
+    "megami": "saine",
+    "name_ko": "율동호극",
+    "name_jp": "律動弧戟",
+    "base_type": "special",
+    "type": "action",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": "6",
+    "capacity": null,
+    "text_ko": "공격『적정거리3-4、1/1』을 행한다.  공격『적정거리4-5、1/1』을 행한다.  공격『적정거리3-5、2/2』을 행한다.",
+    "text_ko_additional": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": [
+          {
+            "op": "attack",
+            "range": "3-4",
+            "dmg": "1/1",
+            "flags": []
+          },
+          {
+            "op": "attack",
+            "range": "4-5",
+            "dmg": "1/1",
+            "flags": []
+          },
+          {
+            "op": "attack",
+            "range": "3-5",
+            "dmg": "2/2",
+            "flags": []
+          }
+        ]
+      }
+    ],
+    "patch_note": "재연: 변경 없음",
+    "card_flags": []
+  },
+  "02-saine-o-s-2": {
+    "id": "02-saine-o-s-2",
+    "megami": "saine",
+    "name_ko": "항명공진",
+    "name_jp": "響鳴共振",
+    "base_type": "special",
+    "type": "action",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": "8",
+    "capacity": null,
+    "text_ko": "【상시】이 카드의 소비는 상대 오라의 수 만큼 적어진다.\n 상대 오라→간격：2",
+    "text_ko_additional": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "constant",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "cost_reduce_by_opp_aura"
+          }
+        ]
+      },
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": [
+          {
+            "op": "move",
+            "from": "opp_aura",
+            "to": "distance",
+            "n": 2
+          }
+        ]
+      }
+    ],
+    "patch_note": "재연: 변경 없음",
+    "card_flags": []
+  },
+  "02-saine-o-s-3": {
+    "id": "02-saine-o-s-3",
+    "megami": "saine",
+    "name_ko": "음무쇄빙",
+    "name_jp": "音無砕氷",
+    "base_type": "special",
+    "type": "attack",
+    "subtype": "reaction",
+    "range": "0-10",
+    "damage": "1/1",
+    "cost": "2",
+    "capacity": null,
+    "text_ko": "【공격후】대응한 《공격》은 -1/-1이 된다.\n ----\n 【재기】팔상-당신의 오라가 1이하이다.",
+    "text_ko_additional": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "attack_after",
+        "condition": null,
+        "ops": [
+          {
+            "op": "buff",
+            "target": "reacted_attack",
+            "aura": -1,
+            "life": -1
+          }
+        ]
+      }
+    ],
+    "patch_note": "재연: 변경 없음",
+    "card_flags": [],
+    "saiki": {
+      "condition": "hassou",
+      "immediate": false
+    }
+  },
+  "02-saine-o-s-4": {
+    "id": "02-saine-o-s-4",
+    "megami": "saine",
+    "name_ko": "히사메 사이네의 최후의 종극",
+    "name_jp": "氷雨細音の果ての果て",
+    "base_type": "special",
+    "type": "attack",
+    "subtype": "reaction",
+    "range": "1-5",
+    "damage": "5/5",
+    "cost": "5",
+    "capacity": null,
+    "text_ko": "【상시】이 카드는 비장패에 대한 대응으로만 사용한다.",
+    "text_ko_additional": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "constant",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "reaction_to_special_only"
+          }
+        ]
+      }
+    ],
+    "patch_note": "재연: 변경 없음",
+    "card_flags": []
+  },
+  "03-himika-o-n-1": {
+    "id": "03-himika-o-n-1",
+    "megami": "himika",
+    "name_ko": "슛",
+    "name_jp": "シュート",
+    "base_type": "normal",
+    "type": "attack",
+    "subtype": null,
+    "range": "4-10",
+    "damage": "2/1",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "",
+    "text_ko_additional": null,
+    "patch_verified": true,
+    "effects": [],
+    "patch_note": "재연: 변경 없음",
+    "card_flags": []
+  },
+  "03-himika-o-n-2": {
+    "id": "03-himika-o-n-2",
+    "megami": "himika",
+    "name_ko": "래피드 파이어",
+    "name_jp": "ラピッドファイア",
+    "base_type": "normal",
+    "type": "attack",
+    "subtype": null,
+    "range": "6-8",
+    "damage": "2/1",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "【상시】연화-이 카드가 이 턴에 사용한 3장째 이후의 카드라면, 이 《공격》은 +1/+1이 된다.",
+    "text_ko_additional": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "constant",
+        "condition": "renka",
+        "ops": [
+          {
+            "op": "buff",
+            "target": "this_attack",
+            "aura": 1,
+            "life": 1
+          }
+        ]
+      }
+    ],
+    "patch_note": "재연: 변경 없음",
+    "card_flags": []
+  },
+  "03-himika-o-n-3": {
+    "id": "03-himika-o-n-3",
+    "megami": "himika",
+    "name_ko": "리코일 번",
+    "name_jp": "マグナムカノン",
+    "base_type": "normal",
+    "type": "attack",
+    "subtype": null,
+    "range": "2-8",
+    "damage": "2/2",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "【공격후】자신의 라이프가 2 이상이라면, 자신 라이프→간격：1",
+    "text_ko_additional": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "attack_after",
+        "condition": {
+          "expr": "my_life >= 2"
+        },
+        "ops": [
+          {
+            "op": "move",
+            "from": "my_life",
+            "to": "distance",
+            "n": 1
+          }
+        ]
+      }
+    ],
+    "prev": {
+      "name_ko": "매그넘 캐논",
+      "range": "5-8",
+      "damage": "3/2",
+      "text_ko": "【공격후】자신 라이프→더스트：1"
+    },
+    "patch_note": "재연: 매그넘 캐논→리코일 번으로 교체 (5-8 3/2 → 2-8 2/2, 라이프→더스트에서 라이프→간격으로)",
+    "card_flags": []
+  },
+  "03-himika-o-n-4": {
+    "id": "03-himika-o-n-4",
+    "megami": "himika",
+    "name_ko": "풀 버스트",
+    "name_jp": "フルバースト",
+    "base_type": "normal",
+    "type": "attack",
+    "subtype": "fullpower",
+    "range": "5-9",
+    "damage": "3/1",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "【상시】이 《공격》이 대미지를 준다면, 상대는 한쪽을 고르는 것이 아닌 양방 모두의 대미지를 받는다.",
+    "text_ko_additional": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "constant",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "full_burst_both"
+          }
+        ]
+      }
+    ],
+    "patch_note": "재연: 변경 없음",
+    "card_flags": []
+  },
+  "03-himika-o-n-5": {
+    "id": "03-himika-o-n-5",
+    "megami": "himika",
+    "name_ko": "백스탭",
+    "name_jp": "バックステップ",
+    "base_type": "normal",
+    "type": "action",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": null,
+    "text_ko": "카드를 1장 뽑는다.   더스트→간격：1",
+    "text_ko_additional": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": [
+          {
+            "op": "draw",
+            "n": 1
+          },
+          {
+            "op": "move",
+            "from": "dust",
+            "to": "distance",
+            "n": 1
+          }
+        ]
+      }
+    ],
+    "patch_note": "재연: 변경 없음",
+    "card_flags": []
+  },
+  "03-himika-o-n-6": {
+    "id": "03-himika-o-n-6",
+    "megami": "himika",
+    "name_ko": "백드래프트",
+    "name_jp": "バックドラフト",
+    "base_type": "normal",
+    "type": "action",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": null,
+    "text_ko": "상대를 위축시킨다.\n연화-이 카드를 포함해 이번 턴에 카드를 3장 이상 사용했다면, 이번 턴에 당신이 수행하는 다른 여신에 의한, 오라 데미지가 「3」이하의 다음번 《공격》은 +1/+1 된다.",
+    "text_ko_additional": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": [
+          {
+            "op": "wither",
+            "who": "opp"
+          }
+        ]
+      },
+      {
+        "trigger": "main",
+        "condition": "renka",
+        "ops": [
+          {
+            "op": "buff",
+            "target": "next_attack_other_megami",
+            "aura": 1,
+            "life": 1,
+            "scope": "this_turn",
+            "only_if_aura_dmg_le": 3
+          }
+        ]
+      }
+    ],
+    "patch_note": "재연: 변경 없음 (10-2 패치 내용 재기재였음)",
+    "card_flags": [],
+    "audit_note": "세션1 검수: 정식 텍스트로 갱신 (다음번=1회 제한, 구현 일치 확인)"
+  },
+  "03-himika-o-n-7": {
+    "id": "03-himika-o-n-7",
+    "megami": "himika",
+    "name_ko": "리로딩",
+    "name_jp": "スモーク",
+    "base_type": "normal",
+    "type": "enhance",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": "3",
+    "text_ko": "【전개중】종료 페이즈에 당신의 손패가 0장이라면, 카드를 1장 뽑아도 된다.",
+    "text_ko_additional": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "deploy_during",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "reloading_draw"
+          }
+        ]
+      }
+    ],
+    "prev": {
+      "name_ko": "스모크",
+      "text_ko": "【전개중】간격에 있는 벚꽃 결정은 카드의 화살표(→)에 의해서는 이동하지 않는다."
+    },
+    "patch_note": "재연: 스모크→리로딩으로 교체 (납3 유지)",
+    "card_flags": []
+  },
+  "03-himika-o-s-1": {
+    "id": "03-himika-o-s-1",
+    "megami": "himika",
+    "name_ko": "레드 불릿",
+    "name_jp": "レッドバレット",
+    "base_type": "special",
+    "type": "attack",
+    "subtype": null,
+    "range": "5-10",
+    "damage": "3/1",
+    "cost": "0",
+    "capacity": null,
+    "text_ko": "",
+    "text_ko_additional": null,
+    "patch_verified": true,
+    "effects": [],
+    "patch_note": "재연: 변경 없음",
+    "card_flags": []
+  },
+  "03-himika-o-s-2": {
+    "id": "03-himika-o-s-2",
+    "megami": "himika",
+    "name_ko": "크림슨 제로",
+    "name_jp": "クリムゾンゼロ",
+    "base_type": "special",
+    "type": "attack",
+    "subtype": null,
+    "range": "0-2",
+    "damage": "2/2",
+    "cost": "5",
+    "capacity": null,
+    "text_ko": "【상시】이 《공격》이 대미지를 주었다면, 상대는 한쪽을 고르는 것이 아닌 양쪽의 대미지를 받는다.\n 【상시】현재 간격이 0이라면, 이 《공격》은 대응불가를 얻는다.",
+    "text_ko_additional": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "constant",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "full_burst_both"
+          }
+        ]
+      },
+      {
+        "trigger": "constant",
+        "condition": {
+          "expr": "current_range == 0"
+        },
+        "ops": [
+          {
+            "op": "buff",
+            "target": "this_attack",
+            "gains": [
+              "no_reactions"
+            ]
+          }
+        ]
+      }
+    ],
+    "patch_note": "재연: 변경 없음",
+    "card_flags": []
+  },
+  "03-himika-o-s-3": {
+    "id": "03-himika-o-s-3",
+    "megami": "himika",
+    "name_ko": "스칼렛 이매진",
+    "name_jp": "スカーレットイマジン",
+    "base_type": "special",
+    "type": "action",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": "3",
+    "capacity": null,
+    "text_ko": "카드를 2장 뽑는다. 그 후, 당신은 손패를 1장 덮임패로 한다.",
+    "text_ko_additional": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": [
+          {
+            "op": "draw",
+            "n": 2
+          },
+          {
+            "op": "cover_from_hand",
+            "n": 1
+          }
+        ]
+      }
+    ],
+    "patch_note": "재연: 변경 없음",
+    "card_flags": []
+  },
+  "03-himika-o-s-4": {
+    "id": "03-himika-o-s-4",
+    "megami": "himika",
+    "name_ko": "버밀리온 필드",
+    "name_jp": "ヴァーミリオンフィールド",
+    "base_type": "special",
+    "type": "action",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": "2",
+    "capacity": null,
+    "text_ko": "연화-이 카드가 이 턴에 사용한 3장째 이후의 카드라면, 더스트→간격：2\n ----\n 【재기】당신의 손패가 0장이다.",
+    "text_ko_additional": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": "renka",
+        "ops": [
+          {
+            "op": "move",
+            "from": "dust",
+            "to": "distance",
+            "n": 2
+          }
+        ]
+      }
+    ],
+    "patch_note": "재연: 변경 없음",
+    "card_flags": [],
+    "saiki": {
+      "condition": {
+        "expr": "hand_count == 0"
+      },
+      "immediate": false
+    }
+  },
+  "04-tokoyo-o-n-1": {
+    "id": "04-tokoyo-o-n-1",
+    "megami": "tokoyo",
+    "name_ko": "빗어내리기",
+    "name_jp": "梳流し",
+    "base_type": "normal",
+    "type": "attack",
+    "subtype": null,
+    "range": "4",
+    "damage": "-/1",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "【공격후】경지-당신의 집중력이 2라면, 이 카드를 패산 위로 되돌린다.",
+    "text_ko_additional": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "attack_after",
+        "condition": "kyouchi",
+        "ops": [
+          {
+            "op": "return_this_to_deck_top"
+          }
+        ]
+      }
+    ],
+    "patch_note": "재연: 변경 없음",
+    "card_flags": []
+  },
+  "04-tokoyo-o-n-2": {
+    "id": "04-tokoyo-o-n-2",
+    "megami": "tokoyo",
+    "name_ko": "우아한 타격",
+    "name_jp": "雅打ち",
+    "base_type": "normal",
+    "type": "attack",
+    "subtype": "reaction",
+    "range": "2-4",
+    "damage": "2/1",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "【공격후】경지-당신의 집중력이 2라면, 대응한 비장패가 아닌 《공격》을 무효화한다.",
+    "text_ko_additional": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "attack_after",
+        "condition": "kyouchi",
+        "ops": [
+          {
+            "op": "cancel_reacted_attack",
+            "non_special": true
+          }
+        ]
+      }
+    ],
+    "patch_note": "재연: 변경 없음",
+    "card_flags": []
+  },
+  "04-tokoyo-o-n-3": {
+    "id": "04-tokoyo-o-n-3",
+    "megami": "tokoyo",
+    "name_ko": "날뛰는 토끼",
+    "name_jp": "跳ね兎",
+    "base_type": "normal",
+    "type": "attack",
+    "subtype": null,
+    "range": "0-3",
+    "damage": "1/0",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "【상시】경지-당신의 집중력이 2라면, 이 《공격》은 +0/+1이 된다.\n【공격후】더스트→간격：2",
+    "text_ko_additional": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "constant",
+        "condition": "kyouchi",
+        "ops": [
+          {
+            "op": "buff",
+            "target": "this_attack",
+            "aura": 0,
+            "life": 1
+          }
+        ]
+      },
+      {
+        "trigger": "attack_after",
+        "condition": null,
+        "ops": [
+          {
+            "op": "move",
+            "from": "dust",
+            "to": "distance",
+            "n": 2
+          }
+        ]
+      }
+    ],
+    "prev": {
+      "type": "action",
+      "range": null,
+      "damage": null,
+      "text_ko": "현재 간격이 3 이하라면, 더스트→간격：2"
+    },
+    "patch_note": "재연: 행동→공격으로 타입 변경 (0-3 1/0, 경지시 1/1)",
+    "card_flags": []
+  },
+  "04-tokoyo-o-n-4": {
+    "id": "04-tokoyo-o-n-4",
+    "megami": "tokoyo",
+    "name_ko": "시의 춤",
+    "name_jp": "詩舞",
+    "base_type": "normal",
+    "type": "action",
+    "subtype": "reaction",
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": null,
+    "text_ko": "집중력을 1 얻고, 이하에서 하나를 고른다.\n ・자신 플레어→자신 오라：1\n ・자신 오라→간격：1",
+    "text_ko_additional": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": [
+          {
+            "op": "gain_vigor",
+            "n": 1
+          },
+          {
+            "op": "choose",
+            "options": [
+              [
+                {
+                  "op": "move",
+                  "from": "my_flare",
+                  "to": "my_aura",
+                  "n": 1
+                }
+              ],
+              [
+                {
+                  "op": "move",
+                  "from": "my_aura",
+                  "to": "distance",
+                  "n": 1
+                }
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "patch_note": "재연: 변경 없음",
+    "card_flags": []
+  },
+  "04-tokoyo-o-n-5": {
+    "id": "04-tokoyo-o-n-5",
+    "megami": "tokoyo",
+    "name_ko": "부채 뒤집기",
+    "name_jp": "要返し",
+    "base_type": "normal",
+    "type": "action",
+    "subtype": "fullpower",
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": null,
+    "text_ko": "버림패나 덮임패에서 카드를 2장까지 고른다. 이 카드들을 원하는 순으로 패산의 밑에 둔다. \n 더스트→자신 오라：2",
+    "text_ko_additional": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": [
+          {
+            "op": "deck_bottom_from_discard_or_cover",
+            "n": 2,
+            "up_to": true
+          },
+          {
+            "op": "move",
+            "from": "dust",
+            "to": "my_aura",
+            "n": 2
+          }
+        ]
+      }
+    ],
+    "patch_note": "재연: 변경 없음",
+    "card_flags": []
+  },
+  "04-tokoyo-o-n-6": {
+    "id": "04-tokoyo-o-n-6",
+    "megami": "tokoyo",
+    "name_ko": "바람의 무대",
+    "name_jp": "風舞台",
+    "base_type": "normal",
+    "type": "enhance",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": "2",
+    "text_ko": "【전개시】간격→자신 오라：2 \n 【파기시】자신 오라→간격：2",
+    "text_ko_additional": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "deploy_start",
+        "condition": null,
+        "ops": [
+          {
+            "op": "move",
+            "from": "distance",
+            "to": "my_aura",
+            "n": 2
+          }
+        ]
+      },
+      {
+        "trigger": "destroy",
+        "condition": null,
+        "ops": [
+          {
+            "op": "move",
+            "from": "my_aura",
+            "to": "distance",
+            "n": 2
+          }
+        ]
+      }
+    ],
+    "patch_note": "재연: 변경 없음",
+    "card_flags": []
+  },
+  "04-tokoyo-o-n-7": {
+    "id": "04-tokoyo-o-n-7",
+    "megami": "tokoyo",
+    "name_ko": "맑음의 무대",
+    "name_jp": "晴舞台",
+    "base_type": "normal",
+    "type": "enhance",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": "2",
+    "text_ko": "종단\n【전개시】당신의 집중력은 2가 된다.\n【파기시】공격 『적정거리 3-6, -/1』을 한다.",
+    "text_ko_additional": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "deploy_start",
+        "condition": null,
+        "ops": [
+          {
+            "op": "set_vigor",
+            "who": "me",
+            "n": 2
+          }
+        ]
+      },
+      {
+        "trigger": "destroy",
+        "condition": null,
+        "ops": [
+          {
+            "op": "attack",
+            "range": "3-6",
+            "dmg": "-/1",
+            "flags": []
+          }
+        ]
+      }
+    ],
+    "patch_note": "재연: 변경 없음",
+    "card_flags": [
+      "terminal"
+    ]
+  },
+  "04-tokoyo-o-s-1": {
+    "id": "04-tokoyo-o-s-1",
+    "megami": "tokoyo",
+    "name_ko": "영원한 꽃",
+    "name_jp": "久遠ノ花",
+    "base_type": "special",
+    "type": "attack",
+    "subtype": "reaction",
+    "range": "0-10",
+    "damage": "-/1",
+    "cost": "5",
+    "capacity": null,
+    "text_ko": "【공격후】대응한 《공격》을 무효화한다.",
+    "text_ko_additional": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "attack_after",
+        "condition": null,
+        "ops": [
+          {
+            "op": "cancel_reacted_attack",
+            "non_special": false
+          }
+        ]
+      }
+    ],
+    "patch_note": "재연: 변경 없음",
+    "card_flags": []
+  },
+  "04-tokoyo-o-s-2": {
+    "id": "04-tokoyo-o-s-2",
+    "megami": "tokoyo",
+    "name_ko": "천년의 새",
+    "name_jp": "千歳ノ鳥",
+    "base_type": "special",
+    "type": "attack",
+    "subtype": null,
+    "range": "3-4",
+    "damage": "3/1",
+    "cost": "2",
+    "capacity": null,
+    "text_ko": "【공격후】패산을 재구성한다.\n(이때 데미지는 받지 않는다.)",
+    "text_ko_additional": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "attack_after",
+        "condition": null,
+        "ops": [
+          {
+            "op": "reconstruct_deck",
+            "no_damage": true
+          }
+        ]
+      }
+    ],
+    "prev": {
+      "damage": "2/2",
+      "text_ko": "【공격후】패산을 재구성한다.\n (이 때에는 대미지를 받지 않는다.)"
+    },
+    "patch_note": "재연: 2/2→3/1. 재구성 노데미지 유지 (확인 완료)",
+    "card_flags": []
+  },
+  "04-tokoyo-o-s-3": {
+    "id": "04-tokoyo-o-s-3",
+    "megami": "tokoyo",
+    "name_ko": "무궁한 바람",
+    "name_jp": "無窮ノ風",
+    "base_type": "special",
+    "type": "attack",
+    "subtype": null,
+    "range": "3-8",
+    "damage": "1/1",
+    "cost": "1",
+    "capacity": null,
+    "text_ko": "대응불가 \n 【공격후】상대는 손패에서 《공격》이 아닌 카드 1장을 버림패로 한다. 불가능하다면, 상대는 손패를 공개한다.\n ----\n 【재기】경지-당신의 집중력이 2이다.",
+    "text_ko_additional": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "attack_after",
+        "condition": null,
+        "ops": [
+          {
+            "op": "opp_discard_non_attack",
+            "n": 1
+          }
+        ]
+      }
+    ],
+    "patch_note": "재연: 변경 없음",
+    "card_flags": [
+      "no_reactions"
+    ],
+    "saiki": {
+      "condition": "kyouchi",
+      "immediate": false
+    }
+  },
+  "04-tokoyo-o-s-4": {
+    "id": "04-tokoyo-o-s-4",
+    "megami": "tokoyo",
+    "name_ko": "상세의 달",
+    "name_jp": "常世ノ月",
+    "base_type": "special",
+    "type": "action",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": "2",
+    "capacity": null,
+    "text_ko": "당신의 집중력이 2가 되고, 상대의 집중력이 0이 되고, 상대를 위축시킨다。",
+    "text_ko_additional": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": [
+          {
+            "op": "set_vigor",
+            "who": "me",
+            "n": 2
+          },
+          {
+            "op": "set_vigor",
+            "who": "opp",
+            "n": 0
+          },
+          {
+            "op": "wither",
+            "who": "opp"
+          }
+        ]
+      }
+    ],
+    "patch_note": "재연: 변경 없음",
+    "card_flags": [],
+    "audit_note": "세션1 검수: 정식 한글명 상세의 달로 정정"
+  },
+  "08-hagane-o-n-1": {
+    "id": "08-hagane-o-n-1",
+    "megami": "hagane",
+    "name_ko": "원심격",
+    "name_jp": "遠心撃",
+    "base_type": "normal",
+    "extra": false,
+    "type": "attack",
+    "subtype": null,
+    "range": "2-6",
+    "damage": "5/3",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "원심\n종단",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": true,
+    "effects": [],
+    "prev": {
+      "range": "2-6",
+      "damage": "5/3",
+      "text_ko": "원심 \n 【공격후】현재 턴이 당신의 턴이라면, 당신과 상대의 손패를 모두 덮임패로 하고, 당신의 집중력은 0이 되고, 현재 페이즈를 종료한다."
+    },
+    "patch_note": "재연: 2-6 5/3 원심/종단",
+    "card_flags": [
+      "centrifugal",
+      "terminal"
+    ]
+  },
+  "08-hagane-o-n-2": {
+    "id": "08-hagane-o-n-2",
+    "megami": "hagane",
+    "name_ko": "사풍진",
+    "name_jp": "砂風塵",
+    "base_type": "normal",
+    "extra": false,
+    "type": "attack",
+    "subtype": null,
+    "range": "0-6",
+    "damage": "1/-",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "【상시】간격이 턴 시작 시와 비교해 2 이상 변화했다면, 상대는 손패를 1장 버림패로 해야 한다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "constant",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "sapungjin_discard"
+          }
+        ]
+      }
+    ],
+    "prev": {
+      "range": "0-6",
+      "damage": "1/-",
+      "text_ko": "【공격후】현재 간격이 턴 개시시의 간격에서 2 이상 변화했다면, 상대의 손패를 1장 무작위로 골라, 그것을 버림패로 한다."
+    },
+    "patch_note": "재연: 0-6 1/-",
+    "card_flags": []
+  },
+  "08-hagane-o-n-3": {
+    "id": "08-hagane-o-n-3",
+    "megami": "hagane",
+    "name_ko": "대지 부수기",
+    "name_jp": "大地砕き",
+    "base_type": "normal",
+    "extra": false,
+    "type": "attack",
+    "subtype": "fullpower",
+    "range": "0-3",
+    "damage": "2/-",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "대응불가 \n 【공격후】상대의 집중력은 0이 되고, 상대를 위축시킨다。",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "attack_after",
+        "condition": null,
+        "ops": [
+          {
+            "op": "set_vigor",
+            "who": "opp",
+            "n": 0
+          },
+          {
+            "op": "wither",
+            "who": "opp"
+          }
+        ]
+      }
+    ],
+    "card_flags": [
+      "no_reactions"
+    ]
+  },
+  "08-hagane-o-n-4": {
+    "id": "08-hagane-o-n-4",
+    "megami": "hagane",
+    "name_ko": "초반동",
+    "name_jp": "超反動",
+    "base_type": "normal",
+    "extra": false,
+    "type": "action",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": null,
+    "text_ko": "현재 간격에 따라서 아래를 한다.\n5이상…간격→자신 플레어:1\n4이하...상대 플레어→간격：1",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": {
+          "expr": "current_range >= 5"
+        },
+        "ops": [
+          {
+            "op": "move",
+            "from": "distance",
+            "to": "my_flare",
+            "n": 1
+          }
+        ]
+      },
+      {
+        "trigger": "main",
+        "condition": {
+          "expr": "current_range <= 4"
+        },
+        "ops": [
+          {
+            "op": "move",
+            "from": "opp_flare",
+            "to": "distance",
+            "n": 1
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "08-hagane-o-n-5": {
+    "id": "08-hagane-o-n-5",
+    "megami": "hagane",
+    "name_ko": "원무련",
+    "name_jp": "円舞錬",
+    "base_type": "normal",
+    "extra": false,
+    "type": "action",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": null,
+    "text_ko": "원심 \n상대의 플레어가 3 이상이라면、상대 플레어→자신 오라：2",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": {
+          "expr": "opp_flare >= 3"
+        },
+        "ops": [
+          {
+            "op": "move",
+            "from": "opp_flare",
+            "to": "my_aura",
+            "n": 2
+          }
+        ]
+      }
+    ],
+    "card_flags": [
+      "centrifugal"
+    ]
+  },
+  "08-hagane-o-n-6": {
+    "id": "08-hagane-o-n-6",
+    "megami": "hagane",
+    "name_ko": "종 울리기",
+    "name_jp": "鐘鳴らし",
+    "base_type": "normal",
+    "extra": false,
+    "type": "action",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": null,
+    "text_ko": "원심\n다음 《공격》은 +1/+1 또는 대응불가(통상패)+거리확대(원1) 중 하나를 얻는다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": [
+          {
+            "op": "choose",
+            "options": [
+              [
+                {
+                  "op": "buff",
+                  "target": "next_attack",
+                  "aura": 1,
+                  "life": 1,
+                  "scope": "this_turn"
+                }
+              ],
+              [
+                {
+                  "op": "buff",
+                  "target": "next_attack",
+                  "gains": [
+                    "no_reactions",
+                    "far_extend_1"
+                  ],
+                  "scope": "this_turn",
+                  "normal_only": true
+                }
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "prev": {
+      "text_ko": "원심\n아래에서 1가지를 선택한다. 이번 턴에 당신이 수행하는 다음번 《공격》은 그것을 얻는다.\n・+2/+1\n・대응불가와 거리확대(원1)"
+    },
+    "patch_note": "재연: 선택형 버프로 변경",
+    "card_flags": [
+      "centrifugal"
+    ]
+  },
+  "08-hagane-o-n-7": {
+    "id": "08-hagane-o-n-7",
+    "megami": "hagane",
+    "name_ko": "인력장",
+    "name_jp": "引力場",
+    "base_type": "normal",
+    "extra": false,
+    "type": "enhance",
+    "subtype": "reaction",
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": 2,
+    "text_ko": "【전개시】간격→자신 오라：1\n【파기시】자신 오라→간격：1",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "deploy_start",
+        "condition": null,
+        "ops": [
+          {
+            "op": "move",
+            "from": "distance",
+            "to": "my_aura",
+            "n": 1
+          }
+        ]
+      },
+      {
+        "trigger": "destroy",
+        "condition": null,
+        "ops": [
+          {
+            "op": "move",
+            "from": "my_aura",
+            "to": "distance",
+            "n": 1
+          }
+        ]
+      }
+    ],
+    "prev": {
+      "subtype": null,
+      "capacity": "2",
+      "text_ko": "전력화 - 【상시】이 카드가 가지는 화살표 효과로 움직이는 벛꽃결정의 숫자가 1만큼 증가한다.\n【전개시】간격→오라(자신) : 1\n【전개중】달인의 간격이 1 감소한다."
+    },
+    "patch_note": "재연: 부여(대응) 납2",
+    "card_flags": []
+  },
+  "08-hagane-o-s-1": {
+    "id": "08-hagane-o-s-1",
+    "megami": "hagane",
+    "name_ko": "대천공 크래시",
+    "name_jp": "大天空クラッシュ",
+    "base_type": "special",
+    "extra": false,
+    "type": "attack",
+    "subtype": null,
+    "range": "0-10",
+    "damage": "X/Y",
+    "cost": "4",
+    "capacity": null,
+    "text_ko": "초극 \n 【상시】X는 현재 간격이 턴 시작시의 간격에서 변화한 값과 같다. Y는 X의 절반(올림)과 같다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "constant",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "daecheongong_xy"
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "08-hagane-o-s-2": {
+    "id": "08-hagane-o-s-2",
+    "megami": "hagane",
+    "name_ko": "대파종 메갈로벨",
+    "name_jp": "大破鐘メガロベル",
+    "base_type": "special",
+    "extra": false,
+    "type": "action",
+    "subtype": "reaction",
+    "range": null,
+    "damage": null,
+    "cost": "2",
+    "capacity": null,
+    "text_ko": "다른 비장패를 모두 사용한 상태라면, 간격→라이프：1. 이 카드를 게임에서 제거한다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": "other_specials_all_used",
+        "ops": [
+          {
+            "op": "move",
+            "from": "distance",
+            "to": "my_life",
+            "n": 1
+          },
+          {
+            "op": "remove_from_game"
+          }
+        ]
+      }
+    ],
+    "prev": {
+      "subtype": null,
+      "cost": "2",
+      "text_ko": "당신의 다른 비장패가 모두 사용완료라면, 더스트→자신 라이프：2"
+    },
+    "patch_note": "재연: 행동(대응) 소모2",
+    "card_flags": []
+  },
+  "08-hagane-o-s-3": {
+    "id": "08-hagane-o-s-3",
+    "megami": "hagane",
+    "name_ko": "대중력 어트랙트",
+    "name_jp": "大重力アトラクト",
+    "base_type": "special",
+    "extra": false,
+    "type": "action",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": "5",
+    "capacity": null,
+    "text_ko": "간격→자신 플레어：3 \n ----\n 【재기】이 턴에 당신이 원심을 갖는 카드를 사용하고, 이 카드를 사용하지 않았다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": [
+          {
+            "op": "move",
+            "from": "distance",
+            "to": "my_flare",
+            "n": 3
+          }
+        ]
+      }
+    ],
+    "card_flags": [],
+    "saiki": {
+      "condition": "used_centrifugal_not_this",
+      "immediate": false
+    }
+  },
+  "08-hagane-o-s-4": {
+    "id": "08-hagane-o-s-4",
+    "megami": "hagane",
+    "name_ko": "대산맥 리스펙트",
+    "name_jp": "大山脈リスペクト",
+    "base_type": "special",
+    "extra": false,
+    "type": "action",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": "3",
+    "capacity": null,
+    "text_ko": "원심\n아래에서 2번까지 선택한다. 같은 것을 여러 번 선택해도 된다.\n・당신의 패산을 전부 버림패로 만든다.\n・당신의 버림패에 있는 《전력》이 아닌 카드를 1장 선택해 사용한다. 이 방법으로 사용한 《부여》가 아닌 카드가 버림패가 된다면, 대신 덮음패로 만든다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "daesanmaek_choose"
+          }
+        ]
+      }
+    ],
+    "audit_note": "v2검수: 두번째 선택지에 \"1장\" 명시 반영",
+    "card_flags": [
+      "centrifugal"
+    ]
+  },
+  "15-korunu-o-n-1": {
+    "id": "15-korunu-o-n-1",
+    "megami": "korunu",
+    "name_ko": "눈 칼날",
+    "name_jp": "雪刃",
+    "base_type": "normal",
+    "extra": false,
+    "type": "attack",
+    "subtype": null,
+    "range": "3-6",
+    "damage": "1/1",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "【공격후】상대는 1회 동결된다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "attack_after",
+        "condition": null,
+        "ops": [
+          {
+            "op": "freeze",
+            "who": "opp",
+            "n": 1
+          }
+        ]
+      }
+    ],
+    "prev": {
+      "range": "3-4",
+      "text_ko": "【공격후】상대를 동결시킨다."
+    },
+    "patch_note": "재연: 3-6, 공격후 동결",
+    "card_flags": []
+  },
+  "15-korunu-o-n-2": {
+    "id": "15-korunu-o-n-2",
+    "megami": "korunu",
+    "name_ko": "선회날",
+    "name_jp": "旋回刃",
+    "base_type": "normal",
+    "extra": false,
+    "type": "attack",
+    "subtype": null,
+    "range": "2-3",
+    "damage": "2/2",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "【상시】이 카드에 대응을 했다면 대응을 해결한 뒤에, \n\n간격⇔더스트:2",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "attack_after",
+        "condition": null,
+        "ops": [
+          {
+            "op": "move_either",
+            "a": "distance",
+            "b": "dust",
+            "n": 2
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "15-korunu-o-n-3": {
+    "id": "15-korunu-o-n-3",
+    "megami": "korunu",
+    "name_ko": "검의 춤",
+    "name_jp": "剣の舞",
+    "base_type": "normal",
+    "extra": false,
+    "type": "attack",
+    "subtype": null,
+    "range": "4-5",
+    "damage": "2/1",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "【상시】상대의 오라가 꽉 차있다면, 이 《공격》은 +1/+1된다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "constant",
+        "condition": "opp_aura_full",
+        "ops": [
+          {
+            "op": "buff",
+            "target": "this_attack",
+            "aura": 1,
+            "life": 1
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "15-korunu-o-n-4": {
+    "id": "15-korunu-o-n-4",
+    "megami": "korunu",
+    "name_ko": "눈 타기",
+    "name_jp": "雪渡り",
+    "base_type": "normal",
+    "extra": false,
+    "type": "action",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": null,
+    "text_ko": "간격⇔더스트:1\n\n상대의 오라가 꽉 차있다면,\n더스트→간격:1\n을 해도 좋다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": [
+          {
+            "op": "move_either",
+            "a": "distance",
+            "b": "dust",
+            "n": 1
+          }
+        ]
+      },
+      {
+        "trigger": "main",
+        "condition": "opp_aura_full",
+        "ops": [
+          {
+            "op": "move",
+            "from": "dust",
+            "to": "distance",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "15-korunu-o-n-5": {
+    "id": "15-korunu-o-n-5",
+    "megami": "korunu",
+    "name_ko": "절대영도",
+    "name_jp": "絶対零度",
+    "base_type": "normal",
+    "extra": false,
+    "type": "action",
+    "subtype": "reaction",
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": null,
+    "text_ko": "전력화: 공격 『적정거리2-5、1/2』를 수행하고, 상대의 오라의 빈 칸이 없어질 때까지 동결시킨다.\n\n기본행동 《휘감기》를 1회 수행한다. 상대가 3개 이상 동결되었다면 추가로 한번 더 수행한다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": [
+          {
+            "op": "attack",
+            "range": "2-5",
+            "dmg": "1/2",
+            "flags": []
+          },
+          {
+            "op": "freeze_until_full",
+            "who": "opp"
+          },
+          {
+            "op": "custom",
+            "id": "jeoldae_gather"
+          }
+        ]
+      }
+    ],
+    "card_flags": [
+      "fullpower"
+    ]
+  },
+  "15-korunu-o-n-6": {
+    "id": "15-korunu-o-n-6",
+    "megami": "korunu",
+    "name_ko": "동상",
+    "name_jp": "かじかみ",
+    "base_type": "normal",
+    "extra": false,
+    "type": "enhance",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": "2",
+    "text_ko": "【전개시】상대를 동결시킨다.\n【전개중】상대는 기본 동작 《품기》를 할 수 없다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "deploy_start",
+        "condition": null,
+        "ops": [
+          {
+            "op": "freeze",
+            "who": "opp",
+            "n": 1
+          }
+        ]
+      },
+      {
+        "trigger": "deploy_during",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "dongsang_no_hold"
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "15-korunu-o-n-7": {
+    "id": "15-korunu-o-n-7",
+    "megami": "korunu",
+    "name_ko": "서리 가시덤불",
+    "name_jp": "霜の茨",
+    "base_type": "normal",
+    "extra": false,
+    "type": "enhance",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": "2",
+    "text_ko": "【전개중】자신의 턴에 자신이 처음으로 하는 비장패가 아닌 《공격》은 +1/+1 된다.\n【전개중】상대가 동결되어있다면 자신의 턴 개시 페이즈에 이 카드에 올려진 벚꽃 결정을 이동시키지 않아도 좋다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "deploy_during",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "seori_first_attack_buff"
+          }
+        ]
+      },
+      {
+        "trigger": "deploy_during",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "seori_no_tick_if_frozen"
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "15-korunu-o-s-1": {
+    "id": "15-korunu-o-s-1",
+    "megami": "korunu",
+    "name_ko": "콘루 루얀페",
+    "name_jp": "コンルルヤンペ",
+    "base_type": "special",
+    "extra": false,
+    "type": "attack",
+    "subtype": null,
+    "range": "3-5",
+    "damage": "2/3",
+    "cost": "4",
+    "capacity": null,
+    "text_ko": "【공격후】상대가 오라 데미지를 선택했다면 상대의 오라가 꽉 찰때까지 동결시킨다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "attack_after",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "konru_freeze_if_aura"
+          }
+        ]
+      }
+    ],
+    "prev": {
+      "cost": "4",
+      "range": "2-3"
+    },
+    "patch_note": "재연: 소모4, 적정거리 3-5 (효과 유지)",
+    "card_flags": []
+  },
+  "15-korunu-o-s-2": {
+    "id": "15-korunu-o-s-2",
+    "megami": "korunu",
+    "name_ko": "레타르 레라",
+    "name_jp": "レタルレラ",
+    "base_type": "special",
+    "extra": false,
+    "type": "action",
+    "subtype": "reaction",
+    "range": null,
+    "damage": null,
+    "cost": "2",
+    "capacity": null,
+    "text_ko": "상대의 오라가 꽉 차있다면 대응한 공격을 무효한다. 그렇지 않다면,\n간격→상대 오라:1",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": "opp_aura_full",
+        "ops": [
+          {
+            "op": "cancel_reacted_attack",
+            "non_special": false
+          }
+        ]
+      },
+      {
+        "trigger": "main",
+        "condition": "opp_aura_not_full",
+        "ops": [
+          {
+            "op": "move",
+            "from": "distance",
+            "to": "opp_aura",
+            "n": 1
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "15-korunu-o-s-3": {
+    "id": "15-korunu-o-s-3",
+    "megami": "korunu",
+    "name_ko": "우파스 툼",
+    "name_jp": "ウパシトゥム",
+    "base_type": "special",
+    "extra": false,
+    "type": "attack",
+    "subtype": null,
+    "range": "3-6",
+    "damage": "0/-",
+    "cost": "0",
+    "capacity": null,
+    "text_ko": "【공격후】상대를 동결시킨다. (이 카드는 아직 사용중이기 때문에 오라가 꽉 차도 즉재기되지 않는다)\n----\n즉재기:상대의 오라가 꽉 찬다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "attack_after",
+        "condition": null,
+        "ops": [
+          {
+            "op": "freeze",
+            "who": "opp",
+            "n": 1
+          }
+        ]
+      }
+    ],
+    "card_flags": [],
+    "saiki": {
+      "condition": "opp_aura_becomes_full",
+      "immediate": true
+    }
+  },
+  "15-korunu-o-s-4": {
+    "id": "15-korunu-o-s-4",
+    "megami": "korunu",
+    "name_ko": "포루챠르 토",
+    "name_jp": "ポルチャルトー",
+    "base_type": "special",
+    "extra": false,
+    "type": "enhance",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": "2",
+    "capacity": "1",
+    "text_ko": "【상시】이 카드를 코스트4로 쓰면 《대응》을 가진 것처럼 상대의 《공격》에 끼어들어서 사용해도 좋다.\n【전개시】간격⇔더스트：1　　상대는 1번 동결한다.\n【파기시】이 카드를 납4로써 사용해도 좋다.（코스트는 지불할 것）",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "deploy_start",
+        "condition": null,
+        "ops": [
+          {
+            "op": "move_either",
+            "a": "distance",
+            "b": "dust",
+            "n": 1
+          },
+          {
+            "op": "freeze",
+            "who": "opp",
+            "n": 1
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "05-oboro-o-n-1": {
+    "id": "05-oboro-o-n-1",
+    "megami": "oboro",
+    "name_ko": "철사",
+    "name_jp": "鋼糸",
+    "base_type": "normal",
+    "extra": false,
+    "type": "attack",
+    "subtype": null,
+    "range": "3-5",
+    "damage": "2/1",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "설치\n덮음패에서 사용했다면, 이 《공격》은 +0/+1 된다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "constant",
+        "condition": "from_covered",
+        "ops": [
+          {
+            "op": "buff",
+            "target": "this_attack",
+            "aura": 0,
+            "life": 1
+          }
+        ]
+      }
+    ],
+    "prev": {
+      "range": "3-4",
+      "damage": "2/2",
+      "text_ko": "설치"
+    },
+    "patch_note": "재연: 3-5 2/1, 설치/덮음패 보너스",
+    "card_flags": [
+      "setup"
+    ]
+  },
+  "05-oboro-o-n-2": {
+    "id": "05-oboro-o-n-2",
+    "megami": "oboro",
+    "name_ko": "그림자 마름",
+    "name_jp": "影菱",
+    "base_type": "normal",
+    "extra": false,
+    "type": "attack",
+    "subtype": null,
+    "range": "2-3",
+    "damage": "2/1",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "설치\n덮음패에서 사용했다면, 상대를 위축시킨다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "attack_after",
+        "condition": "from_covered",
+        "ops": [
+          {
+            "op": "wither",
+            "who": "opp"
+          }
+        ]
+      }
+    ],
+    "prev": {
+      "range": "2",
+      "damage": "2/1",
+      "text_ko": "설치 대응불가\n【공격후】이 카드를 덮임패에서 사용했고 다른 카드가 덮임패에 존재한다면, 상대의 손패를 보고 그 중 1장을 골라, 그것을 덮임패로 한다."
+    },
+    "patch_note": "재연: 2-3 2/1, 덮음패 시 위축",
+    "card_flags": [
+      "setup"
+    ]
+  },
+  "05-oboro-o-n-3": {
+    "id": "05-oboro-o-n-3",
+    "megami": "oboro",
+    "name_ko": "참격난무",
+    "name_jp": "斬撃乱舞",
+    "base_type": "normal",
+    "extra": false,
+    "type": "attack",
+    "subtype": "fullpower",
+    "range": "2-4",
+    "damage": "3/2",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "【상시】상대가 이 턴 안에 오라로의 대미지를 받았다면, 이 《공격》은 +1/+1이 된다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "constant",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "chamgyeok_aura_dmg_taken"
+          }
+        ]
+      }
+    ],
+    "card_flags": [
+      "fullpower"
+    ]
+  },
+  "05-oboro-o-n-4": {
+    "id": "05-oboro-o-n-4",
+    "megami": "oboro",
+    "name_ko": "닌자걸음",
+    "name_jp": "忍歩",
+    "base_type": "normal",
+    "extra": false,
+    "type": "action",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": null,
+    "text_ko": "설치 \n더스트→간격：1 \n이 카드를 덮임패에서 사용했다면, 덮임패에서 설치를 갖는 카드를 1장 사용해도 좋다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": [
+          {
+            "op": "move",
+            "from": "dust",
+            "to": "distance",
+            "n": 1
+          }
+        ]
+      },
+      {
+        "trigger": "main",
+        "condition": "from_covered",
+        "ops": [
+          {
+            "op": "custom",
+            "id": "ninja_extra_setup"
+          }
+        ]
+      }
+    ],
+    "card_flags": [
+      "setup"
+    ]
+  },
+  "05-oboro-o-n-5": {
+    "id": "05-oboro-o-n-5",
+    "megami": "oboro",
+    "name_ko": "유도",
+    "name_jp": "誘導",
+    "base_type": "normal",
+    "extra": false,
+    "type": "action",
+    "subtype": "reaction",
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": null,
+    "text_ko": "설치\n 이하에서 하나를 고른다.\n ・간격→상대 오라：1\n ・상대 오라→상대 플레어：1",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": [
+          {
+            "op": "choose",
+            "options": [
+              [
+                {
+                  "op": "move",
+                  "from": "distance",
+                  "to": "opp_aura",
+                  "n": 1
+                }
+              ],
+              [
+                {
+                  "op": "move",
+                  "from": "opp_aura",
+                  "to": "opp_flare",
+                  "n": 1
+                }
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "card_flags": [
+      "setup"
+    ]
+  },
+  "05-oboro-o-n-6": {
+    "id": "05-oboro-o-n-6",
+    "megami": "oboro",
+    "name_ko": "분신술",
+    "name_jp": "分身の術",
+    "base_type": "normal",
+    "extra": false,
+    "type": "attack",
+    "subtype": null,
+    "range": "3-4",
+    "damage": "2/1",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "【공격후】손패를 1장 덮음패로 해도 된다. 그렇게 했다면, 공격『적정거리3-4, 1/1』을 행하고, 휘감기를 1회 수행한다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "attack_after",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "bunsin_extra"
+          }
+        ]
+      }
+    ],
+    "prev": {
+      "type": "action",
+      "subtype": "fullpower",
+      "range": null,
+      "damage": null,
+      "text_ko": "덮임패에서 《전력》이 아닌 카드를 1장 골라, 그 카드를 사용한다. 그 후, 그 카드가 버림패에 있다면 버림패에서 한번 더 사용한다. 《공격》카드가 사용됐다면 그 《공격》들은 대응불가를 얻는다（2번 모두 대응불가를 얻는다）."
+    },
+    "patch_note": "재연: 행동(전력)→공격으로 변경",
+    "card_flags": []
+  },
+  "05-oboro-o-n-7": {
+    "id": "05-oboro-o-n-7",
+    "megami": "oboro",
+    "name_ko": "생체활성",
+    "name_jp": "生体活性",
+    "base_type": "normal",
+    "extra": false,
+    "type": "enhance",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": "4",
+    "text_ko": "빈틈 설치 \n 【파기시】당신의 사용완료 비장패를 1장 골라, 그것을 미사용으로 되돌린다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "destroy",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "saengche_recover_special"
+          }
+        ]
+      }
+    ],
+    "card_flags": [
+      "gap",
+      "setup"
+    ]
+  },
+  "05-oboro-o-s-1": {
+    "id": "05-oboro-o-s-1",
+    "megami": "oboro",
+    "name_ko": "쿠마스케",
+    "name_jp": "熊介",
+    "base_type": "special",
+    "extra": false,
+    "type": "attack",
+    "subtype": "fullpower",
+    "range": "3-4",
+    "damage": "2/2",
+    "cost": "4",
+    "capacity": null,
+    "text_ko": "【공격후】공격『적정거리3-4、2/2』을 X번 행한다. X는 당신의 덮임패 장수와 같다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "attack_after",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "kumasuke_repeat"
+          }
+        ]
+      }
+    ],
+    "card_flags": [
+      "fullpower"
+    ]
+  },
+  "05-oboro-o-s-2": {
+    "id": "05-oboro-o-s-2",
+    "megami": "oboro",
+    "name_ko": "토비카게",
+    "name_jp": "鳶影",
+    "base_type": "special",
+    "extra": false,
+    "type": "action",
+    "subtype": "reaction",
+    "range": null,
+    "damage": null,
+    "cost": "4",
+    "capacity": null,
+    "text_ko": "덮임패에서 《전력》이 아닌 카드를 1장 골라, 그 카드를 사용해도 좋다. 이 때, 이 카드가 대응하는 《공격》이 있다면, 사용된 카드는 그것에 대응하고 있는것으로 취급한다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "tobikage_use_covered"
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "05-oboro-o-s-3": {
+    "id": "05-oboro-o-s-3",
+    "megami": "oboro",
+    "name_ko": "우로우오",
+    "name_jp": "虚魚",
+    "base_type": "special",
+    "extra": false,
+    "type": "enhance",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": "2",
+    "capacity": "3",
+    "text_ko": "【전개시】 당신은 버림패를 원하는 숫자만큼 덮은패로 보내도 된다.\n【전개중】 당신이 덮은패에서 사용하는 카드의 화살표는 양방향 화살표(↔)가 된다.\n【전개중/사용됨】 패산을 재구성하기 직전에 설치를 가지는 《공격》이 아닌 카드를 추가로 1장 덮은패에서 사용해도 된다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "deploy_start",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "urouo_discard_to_covered"
+          }
+        ]
+      },
+      {
+        "trigger": "deploy_during",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "urouo_bidirectional"
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "05-oboro-o-s-4": {
+    "id": "05-oboro-o-s-4",
+    "megami": "oboro",
+    "name_ko": "미카즈라",
+    "name_jp": "壬蔓",
+    "base_type": "special",
+    "extra": false,
+    "type": "attack",
+    "subtype": null,
+    "range": "3-7",
+    "damage": "1/1",
+    "cost": "0",
+    "capacity": null,
+    "text_ko": "【공격후】더스트→자신 플레어：1 \n ----\n 【재기】당신의 플레어가 0이다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "attack_after",
+        "condition": null,
+        "ops": [
+          {
+            "op": "move",
+            "from": "dust",
+            "to": "my_flare",
+            "n": 1
+          }
+        ]
+      }
+    ],
+    "card_flags": [],
+    "saiki": {
+      "condition": {
+        "expr": "my_flare == 0"
+      },
+      "immediate": false
+    }
+  },
+  "12-raira-o-n-1": {
+    "id": "12-raira-o-n-1",
+    "megami": "raira",
+    "name_ko": "짐승의 손톱",
+    "name_jp": "獣爪",
+    "base_type": "normal",
+    "extra": false,
+    "type": "attack",
+    "subtype": null,
+    "range": "1-2",
+    "damage": "3/1",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [],
+    "card_flags": []
+  },
+  "12-raira-o-n-2": {
+    "id": "12-raira-o-n-2",
+    "megami": "raira",
+    "name_ko": "풍뢰격",
+    "name_jp": "風雷撃",
+    "base_type": "normal",
+    "extra": false,
+    "type": "attack",
+    "subtype": null,
+    "range": "1-2",
+    "damage": "X/2",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "【상시】X는 풍신 게이지나 뇌신 게이지 중, 작은쪽의 수치가 된다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "constant",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "poongnoe_x"
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "12-raira-o-n-3": {
+    "id": "12-raira-o-n-3",
+    "megami": "raira",
+    "name_ko": "윤회의 손톱",
+    "name_jp": "流転爪",
+    "base_type": "normal",
+    "extra": false,
+    "type": "attack",
+    "subtype": null,
+    "range": "1-2",
+    "damage": "2/1",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "【공격후】당신의 버림패에 있는 《공격》카드 1장을 골라, 패산 맨 위에 두어도 좋다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "attack_after",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "yunhoe_recover_attack"
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "12-raira-o-n-4": {
+    "id": "12-raira-o-n-4",
+    "megami": "raira",
+    "name_ko": "바람 달리기",
+    "name_jp": "風走り",
+    "base_type": "normal",
+    "extra": false,
+    "type": "action",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": null,
+    "text_ko": "현재 간격이 3이상이라면、간격→더스트：2",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": {
+          "expr": "current_range >= 3"
+        },
+        "ops": [
+          {
+            "op": "move",
+            "from": "distance",
+            "to": "dust",
+            "n": 2
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "12-raira-o-n-5": {
+    "id": "12-raira-o-n-5",
+    "megami": "raira",
+    "name_ko": "풍뢰의 지혜",
+    "name_jp": "風雷の知恵",
+    "base_type": "normal",
+    "extra": false,
+    "type": "action",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": null,
+    "text_ko": "집중력을 1 얻는다.\n게이지 합이 4 이상이라면, 버림패의 다른 여신 카드 1장을 패산 맨 위에 놓아도 된다.\n게이지 합이 12 이상이라면, 재구성하고 1장 뽑은 후 이 카드를 게임에서 제거한다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": [
+          {
+            "op": "gain_vigor",
+            "n": 1
+          },
+          {
+            "op": "custom",
+            "id": "poongnoe_wisdom"
+          }
+        ]
+      }
+    ],
+    "prev": {
+      "text_ko": "풍신 게이지와 뇌신 게이지의 합계가 4이상이라면, 당신의 버림패에 있는 다른 여신 카드 1장을 골라, 패산 맨 위에 두어도 좋다.\n 풍신 게이지나 뇌신 게이지를 1 올린다."
+    },
+    "patch_note": "재연: 자체 게이지 상승 삭제",
+    "card_flags": []
+  },
+  "12-raira-o-n-6": {
+    "id": "12-raira-o-n-6",
+    "megami": "raira",
+    "name_ko": "울부짖기",
+    "name_jp": "呼び声",
+    "base_type": "normal",
+    "extra": false,
+    "type": "action",
+    "subtype": "fullpower",
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": null,
+    "text_ko": "다음 중 하나를 택한다:\n・상대를 위축시킨다. 각 게이지를 1씩 증가.\n・뇌신 게이지를 2배로.\n그 후 게이지 합이 12 이상이라면 기본동작을 2회까지 수행.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "ulboo_choose"
+          }
+        ]
+      }
+    ],
+    "prev": {
+      "text_ko": "아래에서 1가지를 선택한다.\n상대를 위축시키고, 풍신 게이지와 뇌신 게이지를 1씩 올린다.\n뇌신 게이지를 2배로 만든다.\n그 후, 풍신 게이지 또는 뇌신 게이지가 7 이상이라면, 공격 『적정거리 0-10, 1/-』을 수행한 뒤, 기본행동을 2회까지 수행한다."
+    },
+    "patch_note": "재연: 오라 딜 삭제, 선택형",
+    "card_flags": [
+      "fullpower"
+    ]
+  },
+  "12-raira-o-n-7": {
+    "id": "12-raira-o-n-7",
+    "megami": "raira",
+    "name_ko": "하늘 박차기",
+    "name_jp": "空駆け",
+    "base_type": "normal",
+    "extra": false,
+    "type": "action",
+    "subtype": "fullpower",
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": null,
+    "text_ko": "간격⇔더스트：3",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": [
+          {
+            "op": "move_either",
+            "a": "distance",
+            "b": "dust",
+            "n": 3
+          }
+        ]
+      }
+    ],
+    "card_flags": [
+      "fullpower"
+    ]
+  },
+  "12-raira-o-s-1": {
+    "id": "12-raira-o-s-1",
+    "megami": "raira",
+    "name_ko": "뇌라풍신조",
+    "name_jp": "雷螺風神爪",
+    "base_type": "special",
+    "extra": false,
+    "type": "attack",
+    "subtype": null,
+    "range": "1-2",
+    "damage": "2/2",
+    "cost": "3",
+    "capacity": null,
+    "text_ko": "【상시】당신의 뇌신 게이지가 4이상이라면、이 《공격》은 +1/+0이 된다. \n ----\n 【재기】당신의 풍신 게이지가 4 이상이다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "constant",
+        "condition": {
+          "expr": "raijin >= 4"
+        },
+        "ops": [
+          {
+            "op": "buff",
+            "target": "this_attack",
+            "aura": 1,
+            "life": 0
+          }
+        ]
+      }
+    ],
+    "card_flags": [],
+    "saiki": {
+      "condition": {
+        "expr": "fuujin >= 4"
+      },
+      "immediate": false
+    }
+  },
+  "12-raira-o-s-2": {
+    "id": "12-raira-o-s-2",
+    "megami": "raira",
+    "name_ko": "천뢰소환진",
+    "name_jp": "天雷召喚陣",
+    "base_type": "special",
+    "extra": false,
+    "type": "action",
+    "subtype": "fullpower",
+    "range": null,
+    "damage": null,
+    "cost": "6",
+    "capacity": null,
+    "text_ko": "공격『적정거리0-10、1/1』을 X번 행한다. X는 뇌신 게이지의 절반(올림값)과 같다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "cheonroe_summon"
+          }
+        ]
+      }
+    ],
+    "card_flags": [
+      "fullpower"
+    ]
+  },
+  "12-raira-o-s-3": {
+    "id": "12-raira-o-s-3",
+    "megami": "raira",
+    "name_ko": "풍마초래공",
+    "name_jp": "風魔招来孔",
+    "base_type": "special",
+    "extra": false,
+    "type": "action",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": "2",
+    "capacity": null,
+    "text_ko": "현재 풍신 게이지에 따라, 이하의 비장패를 추가패에서 미사용으로 얻는다(조건을 만족한 것은 모두 얻는다). 그 후, 이 카드를 제외한다.\n 3이상……풍마선풍 \n 7이상……풍마전회 \n 12이상……풍마천구도",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "poongma_summon"
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "12-raira-o-s-4": {
+    "id": "12-raira-o-s-4",
+    "megami": "raira",
+    "name_ko": "원환륜회선",
+    "name_jp": "円環輪廻旋",
+    "base_type": "special",
+    "extra": false,
+    "type": "enhance",
+    "subtype": "reaction",
+    "range": null,
+    "damage": null,
+    "cost": "2",
+    "capacity": 2,
+    "text_ko": "【전개중】상대의 《공격》 해결 후에 아래를 전부 처리해도 좋다.\n・간격⇔더스트：1\n・풍신 게이지 또는 뇌신 게이지를 1올린다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "deploy_during",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "wonhwan_after_opp_attack"
+          }
+        ]
+      }
+    ],
+    "prev": {
+      "capacity": "3"
+    },
+    "patch_note": "재연: 봉납 2로 변경 (효과 유지)",
+    "card_flags": []
+  },
+  "12-raira-o-s-3-ex1": {
+    "id": "12-raira-o-s-3-ex1",
+    "megami": "raira",
+    "name_ko": "풍마선풍",
+    "name_jp": "風魔旋風",
+    "base_type": "special",
+    "extra": true,
+    "type": "attack",
+    "subtype": null,
+    "range": "1-3",
+    "damage": "1/2",
+    "cost": "1",
+    "capacity": null,
+    "text_ko": "",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [],
+    "_summon_key": "poongma_seonpung",
+    "card_flags": []
+  },
+  "12-raira-o-s-3-ex2": {
+    "id": "12-raira-o-s-3-ex2",
+    "megami": "raira",
+    "name_ko": "풍마전회",
+    "name_jp": "風魔纏廻",
+    "base_type": "special",
+    "extra": true,
+    "type": "action",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": "1",
+    "capacity": null,
+    "text_ko": "당신의 사용완료 비장패를 1장 골라, 그것을 미사용으로 되돌린다.\n 【사용완료】당신의 비장패의 소비는 1 적게 된다.(0 미만으로는 되지 않는다).",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "poongma_jeonhoe_recover"
+          }
+        ]
+      }
+    ],
+    "_summon_key": "poongma_jeonhoe",
+    "card_flags": []
+  },
+  "12-raira-o-s-3-ex3": {
+    "id": "12-raira-o-s-3-ex3",
+    "megami": "raira",
+    "name_ko": "풍마천구도",
+    "name_jp": "風魔天狗道",
+    "base_type": "special",
+    "extra": true,
+    "type": "action",
+    "subtype": "reaction",
+    "range": null,
+    "damage": null,
+    "cost": "4",
+    "capacity": null,
+    "text_ko": "더스트⇔간격：5 \n 당신은 이 효과로 원래보다 적은 갯수의 벚꽃 결정을 움직여도 좋다.그 후, 이 카드는 제외된다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": [
+          {
+            "op": "move_either",
+            "a": "dust",
+            "b": "distance",
+            "n": 5,
+            "up_to": true
+          },
+          {
+            "op": "remove_from_game"
+          }
+        ]
+      }
+    ],
+    "_summon_key": "poongma_cheongudo",
+    "card_flags": []
+  },
+  "09-chikage-o-n-1": {
+    "id": "09-chikage-o-n-1",
+    "megami": "chikage",
+    "name_ko": "쿠나이 던지기",
+    "name_jp": "飛苦無",
+    "base_type": "normal",
+    "extra": false,
+    "type": "attack",
+    "subtype": null,
+    "range": "4-5",
+    "damage": "2/2",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [],
+    "card_flags": []
+  },
+  "09-chikage-o-n-2": {
+    "id": "09-chikage-o-n-2",
+    "megami": "chikage",
+    "name_ko": "독침",
+    "name_jp": "毒針",
+    "base_type": "normal",
+    "extra": false,
+    "type": "attack",
+    "subtype": null,
+    "range": "4",
+    "damage": "1/1",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "【공격후】독주머니에서「마비독」「환각독」「이완독」중 한 장을 고르고, 그 카드를 상대의 패산 맨 위에 둔다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "attack_after",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "plant_poison_deck"
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "09-chikage-o-n-3": {
+    "id": "09-chikage-o-n-3",
+    "megami": "chikage",
+    "name_ko": "둔술",
+    "name_jp": "遁術",
+    "base_type": "normal",
+    "extra": false,
+    "type": "attack",
+    "subtype": "reaction",
+    "range": "1-3",
+    "damage": "1/-",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "【공격후】자신 오라→간격：1　더스트→간격：1 \n【공격후】이 턴 동안, 상대는 기본 동작 《전진》을 할 수 없다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "attack_after",
+        "condition": null,
+        "ops": [
+          {
+            "op": "move",
+            "from": "my_aura",
+            "to": "distance",
+            "n": 1
+          },
+          {
+            "op": "move",
+            "from": "dust",
+            "to": "distance",
+            "n": 1
+          },
+          {
+            "op": "custom",
+            "id": "dunsul_no_advance"
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "09-chikage-o-n-4": {
+    "id": "09-chikage-o-n-4",
+    "megami": "chikage",
+    "name_ko": "암기",
+    "name_jp": "暗器",
+    "base_type": "normal",
+    "extra": false,
+    "type": "attack",
+    "subtype": "reaction",
+    "range": "1-5",
+    "damage": "1/1",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "전력화: 【상시】 이 《공격》은 +1/+2 된다.\n전력화: 【공격후】 상대는 당신의 독주머니를 보고 그 중에서 1장을 골라 그것을 상대의 손패에 추가한다.\n【공격후】 상대의 손패에 독 카드가 있다면, 기본동작 《휘감기》를 1회 수행한다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "constant",
+        "condition": "as_fullpower",
+        "ops": [
+          {
+            "op": "buff",
+            "target": "this_attack",
+            "aura": 1,
+            "life": 2
+          }
+        ]
+      },
+      {
+        "trigger": "attack_after",
+        "condition": "as_fullpower",
+        "ops": [
+          {
+            "op": "custom",
+            "id": "amki_opp_take_poison"
+          }
+        ]
+      },
+      {
+        "trigger": "attack_after",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "amki_gather_if_poison"
+          }
+        ]
+      }
+    ],
+    "card_flags": [
+      "fullpower_option"
+    ]
+  },
+  "09-chikage-o-n-5": {
+    "id": "09-chikage-o-n-5",
+    "megami": "chikage",
+    "name_ko": "독안개",
+    "name_jp": "毒霧",
+    "base_type": "normal",
+    "extra": false,
+    "type": "action",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": null,
+    "text_ko": "독주머니에서「마비독」「환각독」「이완독」중 한 장을 골라, 그 카드를 상대의 손패에 추가한다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "plant_poison_hand"
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "09-chikage-o-n-6": {
+    "id": "09-chikage-o-n-6",
+    "megami": "chikage",
+    "name_ko": "까치발 걸음",
+    "name_jp": "抜き足",
+    "base_type": "normal",
+    "extra": false,
+    "type": "enhance",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": "4",
+    "text_ko": "빈틈 \n 【전개중】현재 간격은 2 감소한다.\n (간격은 0 미만이 되지 않는다.)",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "deploy_during",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "kachibal_dist_minus2"
+          }
+        ]
+      }
+    ],
+    "card_flags": [
+      "gap"
+    ]
+  },
+  "09-chikage-o-n-7": {
+    "id": "09-chikage-o-n-7",
+    "megami": "chikage",
+    "name_ko": "진흙탕",
+    "name_jp": "泥濘",
+    "base_type": "normal",
+    "extra": false,
+    "type": "enhance",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": "2",
+    "text_ko": "【전개중】상대는 기본 동작 《후퇴》와 《이탈》을 행할 수 없다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "deploy_during",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "jinheuk_no_retreat"
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "09-chikage-o-s-1": {
+    "id": "09-chikage-o-s-1",
+    "megami": "chikage",
+    "name_ko": "멸등의 영혼독",
+    "name_jp": "滅灯の魂毒",
+    "base_type": "special",
+    "extra": false,
+    "type": "action",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": "3",
+    "capacity": null,
+    "text_ko": "독주머니에서「멸등독」을 한 장 골라, 그 카드를 상대 패산 가장 위에 둔다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "plant_myeoldeung_deck"
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "09-chikage-o-s-2": {
+    "id": "09-chikage-o-s-2",
+    "megami": "chikage",
+    "name_ko": "반기의 얽힌독",
+    "name_jp": "叛旗の纏毒",
+    "base_type": "special",
+    "extra": false,
+    "type": "enhance",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": "3",
+    "capacity": 3,
+    "text_ko": "【전개중】오라 트루 딜이 아닌 상대와 자신의 《공격》은 오라 데미지도 라이프 데미지를 따라간다. (대입 효과)",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "deploy_during",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "bangi_assign"
+          }
+        ]
+      }
+    ],
+    "prev": {
+      "cost": "2",
+      "capacity": "5",
+      "text_ko": "【전개중】상대에 의한 오라로의 대미지, 혹은 라이프로의 대미지 중 어느 한 쪽이 「-」인 《공격》은 무효화된다."
+    },
+    "patch_note": "재연: 소모3 납3, 대입",
+    "audit_note": "재연: 부여로 변경(대응 제거), 소모3 납3, 대입 효과. 대입 중복 시 공격 자체 대입 먼저",
+    "card_flags": []
+  },
+  "09-chikage-o-s-3": {
+    "id": "09-chikage-o-s-3",
+    "megami": "chikage",
+    "name_ko": "윤회의 안개독",
+    "name_jp": "流転の霞毒",
+    "base_type": "special",
+    "extra": false,
+    "type": "attack",
+    "subtype": null,
+    "range": "3-7",
+    "damage": "1/2",
+    "cost": "1",
+    "capacity": null,
+    "text_ko": "【재기】상대의 손패가 2장 이상이다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [],
+    "card_flags": [],
+    "saiki": {
+      "condition": {
+        "expr": "opp_hand >= 2"
+      },
+      "immediate": false
+    }
+  },
+  "09-chikage-o-s-4": {
+    "id": "09-chikage-o-s-4",
+    "megami": "chikage",
+    "name_ko": "야미쿠라 치카게의 사는 길",
+    "name_jp": "闇昏千影の生きる道",
+    "base_type": "special",
+    "extra": false,
+    "type": "enhance",
+    "subtype": "fullpower",
+    "range": null,
+    "damage": null,
+    "cost": "5",
+    "capacity": "4",
+    "text_ko": "【전개중】당신이 1이상 라이프로의 대미지를 받았을 때, 이 카드 위의 벚꽃 결정은 모두 더스트로 보내지고, 이 카드는 미사용으로 되돌려진다.\n (파기시 효과는 실패한다) \n 【파기시】당신의 다른 비장패가 모두 사용완료라면, 당신은 승리한다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "deploy_during",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "yamikura_guard"
+          }
+        ]
+      },
+      {
+        "trigger": "destroy",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "yamikura_win"
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "09-chikage-o-p-1": {
+    "id": "09-chikage-o-p-1",
+    "megami": "chikage",
+    "name_ko": "마비독",
+    "name_jp": "麻痺毒",
+    "base_type": "poison",
+    "extra": true,
+    "type": "action",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": null,
+    "text_ko": "이번 턴 동안 당신이 기본동작을 수행했다면, 이 카드는 사용할 수 없다.\n이 카드를 상대의 독주머니로 되돌린다.\n종단",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "constant",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "mabi_unusable_if_basic"
+          }
+        ]
+      },
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "poison_return"
+          }
+        ]
+      }
+    ],
+    "prev": {
+      "text_ko": " 【상시】이 턴에 당신이 기본 동작을 행했다면, 이 카드를 사용 할 수 없다.\n 이 카드를 상대의 독주머니에 되돌린다. 그 후, 이 페이즈를 종료한다."
+    },
+    "patch_note": "재연: 사용 조건/텍스트 변경",
+    "card_flags": [
+      "terminal"
+    ]
+  },
+  "09-chikage-o-p-2": {
+    "id": "09-chikage-o-p-2",
+    "megami": "chikage",
+    "name_ko": "환각독",
+    "name_jp": "幻覚毒",
+    "base_type": "poison",
+    "extra": true,
+    "type": "action",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": null,
+    "text_ko": "자신 플레어→더스트：2\n이 카드를 상대의 독주머니에 되돌린다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": [
+          {
+            "op": "move",
+            "from": "my_flare",
+            "to": "dust",
+            "n": 2
+          },
+          {
+            "op": "custom",
+            "id": "poison_return"
+          }
+        ]
+      }
+    ],
+    "audit_note": "재연: 효과 순서 변경 (플레어 이동 먼저)",
+    "card_flags": []
+  },
+  "09-chikage-o-p-3": {
+    "id": "09-chikage-o-p-3",
+    "megami": "chikage",
+    "name_ko": "이완독",
+    "name_jp": "弛緩毒",
+    "base_type": "poison",
+    "extra": true,
+    "type": "enhance",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": "3",
+    "text_ko": " 【전개중】당신은《공격》카드를 사용 할 수 없다.\n 【파기시】이 카드를 상대의 독주머니에 되돌린다. ",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "deploy_during",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "iwan_no_attack"
+          }
+        ]
+      },
+      {
+        "trigger": "destroy",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "poison_return_on_destroy"
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "09-chikage-o-p-4": {
+    "id": "09-chikage-o-p-4",
+    "megami": "chikage",
+    "name_ko": "멸등독",
+    "name_jp": "滅灯毒",
+    "base_type": "poison",
+    "extra": true,
+    "type": "action",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": null,
+    "text_ko": "자신 오라→더스트：3",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": [
+          {
+            "op": "move",
+            "from": "my_aura",
+            "to": "dust",
+            "n": 3
+          }
+        ]
+      }
+    ],
+    "audit_note": "v2검수: 독주머니로 복귀하지 않음 (영구적으로 상대 덱에 남음 — 나무위키 FAQ 확인)",
+    "card_flags": []
+  },
+  "06-yukihi-o-n-1": {
+    "id": "06-yukihi-o-n-1",
+    "megami": "yukihi",
+    "name_ko": "숨긴 바늘 / 머금은 바늘",
+    "name_jp": "しこみばり / ふくみばり",
+    "base_type": "normal",
+    "extra": false,
+    "type": "attack",
+    "subtype": null,
+    "range": "4-6",
+    "damage": "3/1",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "",
+    "text_ko_additional": null,
+    "range_opened": "0-2",
+    "damage_opened": "1/2",
+    "text_opened_ko": "",
+    "patch_verified": false,
+    "effects": [],
+    "card_flags": []
+  },
+  "06-yukihi-o-n-2": {
+    "id": "06-yukihi-o-n-2",
+    "megami": "yukihi",
+    "name_ko": "숨긴 불꽃 / 손뼉치기",
+    "name_jp": "しこみび / ねこだまし",
+    "base_type": "normal",
+    "extra": false,
+    "type": "attack",
+    "subtype": null,
+    "range": "5-6",
+    "damage": "1/1",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "【공격후】이 카드를 손패로 되돌리고, 우산의 개폐를 행한다.",
+    "text_ko_additional": null,
+    "range_opened": "0-2",
+    "damage_opened": "1/1",
+    "text_opened_ko": "",
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "attack_after",
+        "condition": "umbrella_closed",
+        "ops": [
+          {
+            "op": "return_this_to_hand"
+          },
+          {
+            "op": "umbrella_toggle"
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "06-yukihi-o-n-3": {
+    "id": "06-yukihi-o-n-3",
+    "megami": "yukihi",
+    "name_ko": "떨쳐내기 / 끌어당기기",
+    "name_jp": "ふりはらい / たぐりよせ",
+    "base_type": "normal",
+    "extra": false,
+    "type": "attack",
+    "subtype": null,
+    "range": "2-5",
+    "damage": "1/1",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "【공격후】더스트⇔간격：1",
+    "text_ko_additional": null,
+    "range_opened": "0-2",
+    "damage_opened": "1/1",
+    "text_opened_ko": "【공격후】간격→더스트：2",
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "attack_after",
+        "condition": "umbrella_closed",
+        "ops": [
+          {
+            "op": "move_either",
+            "a": "dust",
+            "b": "distance",
+            "n": 1
+          }
+        ]
+      },
+      {
+        "trigger": "attack_after",
+        "condition": "umbrella_open",
+        "ops": [
+          {
+            "op": "move",
+            "from": "distance",
+            "to": "dust",
+            "n": 2
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "06-yukihi-o-n-4": {
+    "id": "06-yukihi-o-n-4",
+    "megami": "yukihi",
+    "name_ko": "휘두르기 / 푹 찌르기",
+    "name_jp": "ふりまわし / つきさし",
+    "base_type": "normal",
+    "extra": false,
+    "type": "attack",
+    "subtype": "fullpower",
+    "range": "4-6",
+    "damage": "5/-",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "",
+    "text_ko_additional": null,
+    "range_opened": "0-2",
+    "damage_opened": "-/2",
+    "text_opened_ko": "",
+    "patch_verified": false,
+    "effects": [],
+    "card_flags": [
+      "fullpower"
+    ]
+  },
+  "06-yukihi-o-n-5": {
+    "id": "06-yukihi-o-n-5",
+    "megami": "yukihi",
+    "name_ko": "우산 돌리기",
+    "name_jp": "かさまわし",
+    "base_type": "normal",
+    "extra": false,
+    "type": "action",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": null,
+    "text_ko": "우산의 개폐를 수행한다. 그 후,\n더스트→오라(자신):1\n\n 【상시】당신이 우산의 개폐를 행했을 때, 이 카드를 손패에서 공개해도 좋다. 그럴 경우, 더스트→자신 오라：1",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": [
+          {
+            "op": "umbrella_toggle"
+          },
+          {
+            "op": "move",
+            "from": "dust",
+            "to": "my_aura",
+            "n": 1
+          }
+        ]
+      },
+      {
+        "trigger": "constant",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "umbrella_reveal"
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "06-yukihi-o-n-6": {
+    "id": "06-yukihi-o-n-6",
+    "megami": "yukihi",
+    "name_ko": "뒷걸음질 / 파고들기",
+    "name_jp": "ひきあし / もぐりこみ",
+    "base_type": "normal",
+    "extra": false,
+    "type": "action",
+    "subtype": "reaction",
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": null,
+    "text_ko": "더스트→간격：1",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": "간격→더스트：1",
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": "umbrella_closed",
+        "ops": [
+          {
+            "op": "move",
+            "from": "dust",
+            "to": "distance",
+            "n": 1
+          }
+        ]
+      },
+      {
+        "trigger": "main",
+        "condition": "umbrella_open",
+        "ops": [
+          {
+            "op": "move",
+            "from": "distance",
+            "to": "dust",
+            "n": 1
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "06-yukihi-o-n-7": {
+    "id": "06-yukihi-o-n-7",
+    "megami": "yukihi",
+    "name_ko": "인연 맺기",
+    "name_jp": "えんむすび",
+    "base_type": "normal",
+    "extra": false,
+    "type": "enhance",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": "2",
+    "text_ko": "【전개시】간격→더스트：1 \n 【파기시】더스트→간격：1 \n 【상시】당신의 우산이 펴져있다면、이 카드의 화살표(→)는 반대가 된다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "deploy_start",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "inyeon_deploy"
+          }
+        ]
+      },
+      {
+        "trigger": "destroy",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "inyeon_destroy"
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "06-yukihi-o-s-1": {
+    "id": "06-yukihi-o-s-1",
+    "megami": "yukihi",
+    "name_ko": "흩날리는 눈꽃",
+    "name_jp": "はらりゆき",
+    "base_type": "special",
+    "extra": false,
+    "type": "attack",
+    "subtype": null,
+    "range": "4-5",
+    "damage": "3/1",
+    "cost": "2",
+    "capacity": null,
+    "text_ko": "【공격후】당신은 집중력을 1 얻는다.",
+    "text_ko_additional": null,
+    "range_opened": "0-2",
+    "damage_opened": "0/0",
+    "text_opened_ko": "----\n【즉재기】당신이 우산의 개폐를 행한다.",
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "attack_after",
+        "condition": "umbrella_closed",
+        "ops": [
+          {
+            "op": "gain_vigor",
+            "n": 1
+          }
+        ]
+      }
+    ],
+    "card_flags": [],
+    "saiki": {
+      "condition": "umbrella_toggle",
+      "immediate": true
+    }
+  },
+  "06-yukihi-o-s-2": {
+    "id": "06-yukihi-o-s-2",
+    "megami": "yukihi",
+    "name_ko": "일렁이는 등불",
+    "name_jp": "ゆらりび",
+    "base_type": "special",
+    "extra": false,
+    "type": "attack",
+    "subtype": null,
+    "range": "4-6",
+    "damage": "0/0",
+    "cost": "5",
+    "capacity": null,
+    "text_ko": "",
+    "text_ko_additional": null,
+    "range_opened": "0",
+    "damage_opened": "4/5",
+    "text_opened_ko": "",
+    "patch_verified": false,
+    "effects": [],
+    "card_flags": []
+  },
+  "06-yukihi-o-s-3": {
+    "id": "06-yukihi-o-s-3",
+    "megami": "yukihi",
+    "name_ko": "질척이는 속내",
+    "name_jp": "どろりうら",
+    "base_type": "special",
+    "extra": false,
+    "type": "enhance",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": "2",
+    "capacity": 5,
+    "text_ko": "우산 접음/종단: 당신의 턴에 수행하는 첫 《공격》은 거리확대(근1), +0/+1.\n우산 폄/종단: 당신의 턴에 수행하는 첫 《공격》은 거리확대(원1), +1/+0.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "deploy_during",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "jilcheok_first_attack"
+          }
+        ]
+      }
+    ],
+    "prev": {
+      "subtype": "fullpower",
+      "cost": "3",
+      "capacity": "7",
+      "text_ko": "【전개중】당신의 유키히의《공격》은 우산을 연 상태와 우산을 닫은 상태 양방의 적정거리를 가진다."
+    },
+    "patch_note": "재연: 전력 제거, 소모2 납5",
+    "card_flags": [
+      "terminal"
+    ]
+  },
+  "06-yukihi-o-s-4": {
+    "id": "06-yukihi-o-s-4",
+    "megami": "yukihi",
+    "name_ko": "빙글도는 몸짓",
+    "name_jp": "くるりみ",
+    "base_type": "special",
+    "extra": false,
+    "type": "action",
+    "subtype": "reaction",
+    "range": null,
+    "damage": null,
+    "cost": "1",
+    "capacity": null,
+    "text_ko": "우산의 개폐를 행한다. \n 더스트→자신 오라：1",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": [
+          {
+            "op": "umbrella_toggle"
+          },
+          {
+            "op": "move",
+            "from": "dust",
+            "to": "my_aura",
+            "n": 1
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "19-megumi-o-n-1": {
+    "id": "19-megumi-o-n-1",
+    "megami": "megumi",
+    "name_ko": "공섬",
+    "name_jp": "空閃",
+    "base_type": "normal",
+    "extra": false,
+    "type": "attack",
+    "subtype": null,
+    "range": "4-8",
+    "damage": "2/1",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "【상시】당신의 토양의 씨앗 결정이 전부 발아되었다면, 이 《공격》은 +1/+1 된다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "constant",
+        "condition": "all_seeds_sprouted",
+        "ops": [
+          {
+            "op": "buff",
+            "target": "this_attack",
+            "aura": 1,
+            "life": 1
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "19-megumi-o-n-2": {
+    "id": "19-megumi-o-n-2",
+    "megami": "megumi",
+    "name_ko": "타척",
+    "name_jp": "打擲",
+    "base_type": "normal",
+    "extra": false,
+    "type": "attack",
+    "subtype": null,
+    "range": "4-5",
+    "damage": "2/1",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "【상시】당신의 부여패에 씨앗 결정이 있다면, 이 《공격》은 +1/+1 된다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "constant",
+        "condition": "enh_has_seed",
+        "ops": [
+          {
+            "op": "buff",
+            "target": "this_attack",
+            "aura": 1,
+            "life": 1
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "19-megumi-o-n-3": {
+    "id": "19-megumi-o-n-3",
+    "megami": "megumi",
+    "name_ko": "껍질치기",
+    "name_jp": "殻打ち",
+    "base_type": "normal",
+    "extra": false,
+    "type": "attack",
+    "subtype": null,
+    "range": "3-5",
+    "damage": "2/1",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "【공격후】이 턴에 당신이 다음에 사용하는 다른 여신의 《부여》 카드는 생육2를 얻는다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "attack_after",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "ggeopjil_growth2"
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "19-megumi-o-n-4": {
+    "id": "19-megumi-o-n-4",
+    "megami": "megumi",
+    "name_ko": "장대 찌르기",
+    "name_jp": "棹穿ち",
+    "base_type": "normal",
+    "extra": false,
+    "type": "attack",
+    "subtype": "reaction",
+    "range": "2-4",
+    "damage": "1/1",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "【상시】이 《공격》의 데미지에 의해서 이동하는 벚꽃 결정은 더스트나 플레어가 아닌 간격으로 이동한다.\n【공격후】당신이 부여패를 내놓고 있다면, 이 턴에 상대가 하는 다음 기본 동작은 효과를 해결하지 않는다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "constant",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "jangdae_dmg_to_distance"
+          }
+        ]
+      },
+      {
+        "trigger": "attack_after",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "jangdae_block_basic"
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "19-megumi-o-n-5": {
+    "id": "19-megumi-o-n-5",
+    "megami": "megumi",
+    "name_ko": "갈대",
+    "name_jp": "葦",
+    "base_type": "normal",
+    "extra": false,
+    "type": "enhance",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": "1",
+    "text_ko": "생육1\n【전개시】더스트→간격：1\n【전개중】현재 간격은 X만큼 증가하고 달인의 간격은 X만큼 크게 된다. X는 이 부여패 위의 씨앗 결정의 개수에 해당된다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "deploy_start",
+        "condition": null,
+        "ops": [
+          {
+            "op": "move",
+            "from": "dust",
+            "to": "distance",
+            "n": 1
+          }
+        ]
+      },
+      {
+        "trigger": "deploy_during",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "galdae_range_x"
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "19-megumi-o-n-6": {
+    "id": "19-megumi-o-n-6",
+    "megami": "megumi",
+    "name_ko": "봉선화",
+    "name_jp": "鳳仙花",
+    "base_type": "normal",
+    "extra": false,
+    "type": "enhance",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": "1",
+    "text_ko": "생육2　틈\n【전개중】상대의 메인 페이즈 개시 시에 공격 『적정거리 3-5, 2/1』를 한다.\n당신의 메인 페이즈 개시 시에 공격 『적정거리 1-3, 2/1』를 한다.\n【파기시】상대를 위축시킨다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "deploy_during",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "bongseonhwa_attacks"
+          }
+        ]
+      },
+      {
+        "trigger": "destroy",
+        "condition": null,
+        "ops": [
+          {
+            "op": "wither",
+            "who": "opp"
+          }
+        ]
+      }
+    ],
+    "card_flags": [
+      "gap"
+    ]
+  },
+  "19-megumi-o-n-7": {
+    "id": "19-megumi-o-n-7",
+    "megami": "megumi",
+    "name_ko": "찔레꽃",
+    "name_jp": "野茨",
+    "base_type": "normal",
+    "extra": false,
+    "type": "enhance",
+    "subtype": "fullpower",
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": "0",
+    "text_ko": "생육2\n【전개시/전개중】전개시와 당신의 종료 페이즈에 기본 동작을 1번 해도 좋다.\n【전개중】상대가 각 최초의 턴마다 처음으로 간격에 있는 벚꽃 결정을 움직일 때마다, 더스트→간격：1\n【전개중】상대의 턴에 이 부여패 위에 있는 벚꽃 결정은 이동하지 않는다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "deploy_start",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "jjille_free_basic"
+          }
+        ]
+      },
+      {
+        "trigger": "deploy_during",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "jjille_marker"
+          }
+        ]
+      }
+    ],
+    "card_flags": [
+      "fullpower"
+    ]
+  },
+  "19-megumi-o-s-1": {
+    "id": "19-megumi-o-s-1",
+    "megami": "megumi",
+    "name_ko": "인과율의 뿌리",
+    "name_jp": "因果律の根",
+    "base_type": "special",
+    "extra": false,
+    "type": "attack",
+    "subtype": null,
+    "range": "3-7",
+    "damage": "1/1",
+    "cost": "1",
+    "capacity": null,
+    "text_ko": "【공격후】당신의 토양의 씨앗 결정을 1개 발아시킨다.\n----\n【재기】당신의 토양에 발아된 씨앗 결정이 없다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "attack_after",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "ingwa_sprout"
+          }
+        ]
+      }
+    ],
+    "card_flags": [],
+    "saiki": {
+      "condition": {
+        "expr": "soil_sprouted == 0"
+      },
+      "immediate": false
+    }
+  },
+  "19-megumi-o-s-2": {
+    "id": "19-megumi-o-s-2",
+    "megami": "megumi",
+    "name_ko": "가능성의 가지",
+    "name_jp": "可能性の枝",
+    "base_type": "special",
+    "extra": false,
+    "type": "enhance",
+    "subtype": "reaction",
+    "range": null,
+    "damage": null,
+    "cost": "4",
+    "capacity": "2",
+    "text_ko": "생육 1\n【상시】 X는 《부여》 카드 위에 있는 당신의 씨앗결정 수의 합계와 같다.\n【전개시】 대응한 《공격》은 -X/+0 된다.\n【전개중】 상대의 개시 페이즈 시작에 공격 『적정거리 1-5, 0/1, 【상시】이 공격은 +X/+0 된다.』을 수행한다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "deploy_during",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "ganeungseong_marker"
+          }
+        ]
+      }
+    ],
+    "prev": {
+      "subtype": "reaction",
+      "cost": "3"
+    },
+    "patch_note": "재연: 부여(대응) 소모4 + X정의 변경(어나더 관련은 제외)",
+    "card_flags": []
+  },
+  "19-megumi-o-s-3": {
+    "id": "19-megumi-o-s-3",
+    "megami": "megumi",
+    "name_ko": "결말의 과실",
+    "name_jp": "結末の果実",
+    "base_type": "special",
+    "extra": false,
+    "type": "enhance",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": "4",
+    "capacity": "2",
+    "text_ko": "【전개중】이 부여패 위의 벚꽃 결정은 메인 페이즈에 이동하지 않는다. 개시 페이즈의 처리에서 당신의 다른 부여패에서 벚꽃 결정이 더스트로 옮겨진다면, 대신에서 이 부여패로 이동시킨다.\n【전개중】이 부여패 위의 씨앗 결정이 5개가 된 턴의 종료 페이즈에 공격 『적정거리5, 5/5, 불가피, 【상시】이 《공격》은 무효화되지 않는다』를 하고 이 카드 위의 벚꽃 결정을 전부 더스트로 보낸다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "deploy_during",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "gyeolmal_check"
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "19-megumi-o-s-4": {
+    "id": "19-megumi-o-s-4",
+    "megami": "megumi",
+    "name_ko": "타키가와 메구미의 손바닥",
+    "name_jp": "瀧河希の掌",
+    "base_type": "special",
+    "extra": false,
+    "type": "enhance",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": "3",
+    "capacity": "0",
+    "text_ko": "생육5\n【전개중】각 턴에 당신이 처음으로 하는 오라 데미지가 3이하의 《공격》은 +1/+1 된다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "deploy_during",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "sonbadak_first_attack"
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "07-shinra-o-n-1": {
+    "id": "07-shinra-o-n-1",
+    "megami": "shinra",
+    "name_ko": "입론",
+    "name_jp": "立論",
+    "base_type": "normal",
+    "extra": false,
+    "type": "attack",
+    "subtype": null,
+    "range": "2-7",
+    "damage": "2/-",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "【상시】상대의 패산에 2장 이상 카드가 있다면, 이 《공격》은 대미지를 주는 대신 패산의 위에서 2장을 덮임패로 한다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "constant",
+        "condition": "opp_deck_ge2",
+        "ops": [
+          {
+            "op": "custom",
+            "id": "ipron_deck_cover"
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "07-shinra-o-n-2": {
+    "id": "07-shinra-o-n-2",
+    "megami": "shinra",
+    "name_ko": "반론",
+    "name_jp": "反論",
+    "base_type": "normal",
+    "extra": false,
+    "type": "attack",
+    "subtype": "reaction",
+    "range": "2-7",
+    "damage": "1/-",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "【공격후】 대응한 비장패가 아니며 오라 데미지가「-」 가 아닌 《공격》의 데미지를 무효화한다.\n【공격후】 상대는 카드를 1장 뽑는다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "attack_after",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "ballon_cancel"
+          }
+        ]
+      },
+      {
+        "trigger": "attack_after",
+        "condition": null,
+        "ops": [
+          {
+            "op": "draw",
+            "n": 1,
+            "who": "opp"
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "07-shinra-o-n-3": {
+    "id": "07-shinra-o-n-3",
+    "megami": "shinra",
+    "name_ko": "궤변",
+    "name_jp": "詭弁",
+    "base_type": "normal",
+    "extra": false,
+    "type": "attack",
+    "subtype": "fullpower",
+    "range": "3-8",
+    "damage": "-/1",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "【공격후】계략을 실행하고, 다음 계략을 준비한다.\n [신산]상대의 패산 위에서 3장을 덮임패로 한다.\n [귀모]상대의 버림패에 있는 카드 1장을 골라, 그것을 사용해도 좋다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "attack_after",
+        "condition": null,
+        "ops": [
+          {
+            "op": "execute_scheme",
+            "shinsan": [
+              {
+                "op": "custom",
+                "id": "gebyeon_shinsan"
+              }
+            ],
+            "kimou": [
+              {
+                "op": "custom",
+                "id": "gebyeon_kimou"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "card_flags": [
+      "fullpower"
+    ]
+  },
+  "07-shinra-o-n-4": {
+    "id": "07-shinra-o-n-4",
+    "megami": "shinra",
+    "name_ko": "인용",
+    "name_jp": "引用",
+    "base_type": "normal",
+    "extra": false,
+    "type": "action",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": null,
+    "text_ko": "상대의 손패를 보고, 《공격》카드를 1장 골라도 좋다. 그럴 경우, 그 카드를 사용하거나 덮임패로 한다. 그 후, 그 카드가 《전력》을 갖는다면 현재 페이즈를 종료한다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "inyong_use_opp_attack"
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "07-shinra-o-n-5": {
+    "id": "07-shinra-o-n-5",
+    "megami": "shinra",
+    "name_ko": "선동",
+    "name_jp": "煽動",
+    "base_type": "normal",
+    "extra": false,
+    "type": "action",
+    "subtype": "reaction",
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": null,
+    "text_ko": "계략을 실행하고, 다음 계략을 준비한다.\n [신산] 더스트→간격：1 \n [귀모] 간격→상대 오라：1",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": [
+          {
+            "op": "execute_scheme",
+            "shinsan": [
+              {
+                "op": "move",
+                "from": "dust",
+                "to": "distance",
+                "n": 1
+              }
+            ],
+            "kimou": [
+              {
+                "op": "move",
+                "from": "distance",
+                "to": "opp_aura",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "07-shinra-o-n-6": {
+    "id": "07-shinra-o-n-6",
+    "megami": "shinra",
+    "name_ko": "장담",
+    "name_jp": "壮語",
+    "base_type": "normal",
+    "extra": false,
+    "type": "enhance",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": "2",
+    "text_ko": "【파기시】계략을 실행하고, 다음 계략을 준비한다.\n [신산] 당신은 집중력을 1 얻고, 이 카드를 패산의 맨 위에 둔다.\n [귀모] 상대 손패가 1장 이하라면, 상대를 위축시키고, 상대는 카드를 3장 뽑고, 상대는 손패를 2장 버림패로 한다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "destroy",
+        "condition": null,
+        "ops": [
+          {
+            "op": "execute_scheme",
+            "shinsan": [
+              {
+                "op": "custom",
+                "id": "jangdam_shinsan"
+              }
+            ],
+            "kimou": [
+              {
+                "op": "custom",
+                "id": "jangdam_kimou"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "07-shinra-o-n-7": {
+    "id": "07-shinra-o-n-7",
+    "megami": "shinra",
+    "name_ko": "논파",
+    "name_jp": "論破",
+    "base_type": "normal",
+    "extra": false,
+    "type": "enhance",
+    "subtype": "reaction",
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": 3,
+    "text_ko": "【전개시】상대 패산 맨 위 1장을 버림패로 한다. 상대 버림패 1장을 이 카드 아래에 봉인한다.\n【파기시】봉인된 카드를 버림패로 되돌린다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "deploy_start",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "nonpa_deck_discard"
+          },
+          {
+            "op": "seal_from_discard"
+          }
+        ]
+      },
+      {
+        "trigger": "destroy",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "nonpa_unseal"
+          }
+        ]
+      }
+    ],
+    "prev": {
+      "subtype": null,
+      "capacity": "4",
+      "text_ko": "【전개시】상대의 버림패에 있는 카드를 1장 골라, 이 카드 밑에 봉인한다.\n 【파기시】이 카드에 봉인 된 카드를 상대의 버림패로 되돌린다."
+    },
+    "patch_note": "재연: 부여(대응) 납3",
+    "card_flags": []
+  },
+  "07-shinra-o-s-1": {
+    "id": "07-shinra-o-s-1",
+    "megami": "shinra",
+    "name_ko": "완전논파",
+    "name_jp": "完全論破",
+    "base_type": "special",
+    "extra": false,
+    "type": "action",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": "2",
+    "capacity": null,
+    "text_ko": "상대의 버림패에 있는 카드 1장을 골라, 이 카드 밑에 봉인한다.\n (게임 중에 되돌아오는 일은 없다.)",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": [
+          {
+            "op": "seal_from_discard"
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "07-shinra-o-s-2": {
+    "id": "07-shinra-o-s-2",
+    "megami": "shinra",
+    "name_ko": "일절이해",
+    "name_jp": "皆式理解",
+    "base_type": "special",
+    "extra": false,
+    "type": "action",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": "2",
+    "capacity": null,
+    "text_ko": "계략을 실행하고, 다음 계략을 준비한다.\n [신산]당신의 버림패 혹은 사용완료 비장패에서, 소비를 지불하지 않고 《부여》카드 1장을 사용한다. 그 카드가 《전력》이라면 현재 페이즈를 종료한다.\n [귀모] 비장패가 아닌 상대의 부여패를 1장 고른다. 그 위의 벚꽃 결정 모두를 더스트로 보낸다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": [
+          {
+            "op": "execute_scheme",
+            "shinsan": [
+              {
+                "op": "custom",
+                "id": "iljeol_shinsan"
+              }
+            ],
+            "kimou": [
+              {
+                "op": "custom",
+                "id": "iljeol_kimou"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "07-shinra-o-s-3": {
+    "id": "07-shinra-o-s-3",
+    "megami": "shinra",
+    "name_ko": "천지반박",
+    "name_jp": "天地反駁",
+    "base_type": "special",
+    "extra": false,
+    "type": "enhance",
+    "subtype": "fullpower",
+    "range": null,
+    "damage": null,
+    "cost": "2",
+    "capacity": "5",
+    "text_ko": "【전개중】당신의 《공격》의 오라로의 대미지와 라이프로의 대미지를 바꾼다.\n （대미지의 증감보다 먼저 적용된다.）",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "deploy_during",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "cheonji_swap"
+          }
+        ]
+      }
+    ],
+    "card_flags": [
+      "fullpower"
+    ]
+  },
+  "07-shinra-o-s-4": {
+    "id": "07-shinra-o-s-4",
+    "megami": "shinra",
+    "name_ko": "삼라판증",
+    "name_jp": "森羅判証",
+    "base_type": "special",
+    "extra": false,
+    "type": "enhance",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": "6",
+    "capacity": "6",
+    "text_ko": "【전개시】더스트→자신 라이프：2 \n 【전개중】당신의 다른 부여패가 파기되었을 때, 상대의 라이프에 1 대미지를 준다.\n 【파기시】당신은 패배한다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "deploy_start",
+        "condition": null,
+        "ops": [
+          {
+            "op": "move",
+            "from": "dust",
+            "to": "my_life",
+            "n": 2
+          }
+        ]
+      },
+      {
+        "trigger": "deploy_during",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "samra_on_other_destroy"
+          }
+        ]
+      },
+      {
+        "trigger": "destroy",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "samra_lose"
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "10-kururu-o-n-1": {
+    "id": "10-kururu-o-n-1",
+    "megami": "kururu",
+    "name_ko": "엘레키텔",
+    "name_jp": "えれきてる",
+    "base_type": "normal",
+    "extra": false,
+    "type": "action",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": null,
+    "text_ko": "----\n <행행행대대>상대의 라이프에 1 대미지를 준다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": {
+          "gigyo": "행행행대대"
+        },
+        "ops": [
+          {
+            "op": "custom",
+            "id": "kururu_life_dmg_1"
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "10-kururu-o-n-2": {
+    "id": "10-kururu-o-n-2",
+    "megami": "kururu",
+    "name_ko": "액셀러~",
+    "name_jp": "あくせらー",
+    "base_type": "normal",
+    "extra": false,
+    "type": "action",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": null,
+    "text_ko": "----\n <행행부> 당신의 손패에서 《전력》카드를 1장 고르고, 그 카드를 사용해도 좋다.\n (페이즈는 종료되지 않는다.)",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": {
+          "gigyo": "행행부"
+        },
+        "ops": [
+          {
+            "op": "custom",
+            "id": "accel_use_fullpower"
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "10-kururu-o-n-3": {
+    "id": "10-kururu-o-n-3",
+    "megami": "kururu",
+    "name_ko": "쿠루룽~",
+    "name_jp": "くるるーん",
+    "base_type": "normal",
+    "extra": false,
+    "type": "action",
+    "subtype": "reaction",
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": null,
+    "text_ko": "【상시】이 카드는 대응으로만 사용한다.\n 이하에서 2개까지 고르고, 임의의 순서로 행한다. \n (같은 것을 2번 고를 수 없다.)\n ・카드를 1장 뽑는다.\n ・덮임패 1장을 패산 밑에 둔다.\n ・상대는 손패를 1장 버림패로 한다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "kururung_choose2"
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "10-kururu-o-n-4": {
+    "id": "10-kururu-o-n-4",
+    "megami": "kururu",
+    "name_ko": "토네~이도",
+    "name_jp": "とるねーど",
+    "base_type": "normal",
+    "extra": false,
+    "type": "action",
+    "subtype": "fullpower",
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": null,
+    "text_ko": "{공공} 오라에 5 데미지\n{행행} 플레어에 1 데미지\n{부부} 라이프에 1 데미지",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": {
+          "gigyo": "공공"
+        },
+        "ops": [
+          {
+            "op": "custom",
+            "id": "tornado_aura5"
+          }
+        ]
+      },
+      {
+        "trigger": "main",
+        "condition": {
+          "gigyo": "행행"
+        },
+        "ops": [
+          {
+            "op": "custom",
+            "id": "tornado_flare1"
+          }
+        ]
+      },
+      {
+        "trigger": "main",
+        "condition": {
+          "gigyo": "부부"
+        },
+        "ops": [
+          {
+            "op": "custom",
+            "id": "tornado_life1"
+          }
+        ]
+      }
+    ],
+    "prev": {
+      "subtype": "fullpower",
+      "text_ko": "----\n <공공>상대의 오라에 5 대미지를 준다.\n ----\n <부부> 상대의 라이프에 1 대미지를 준다."
+    },
+    "patch_note": "재연: 기계장치 3단",
+    "card_flags": [
+      "fullpower"
+    ]
+  },
+  "10-kururu-o-n-5": {
+    "id": "10-kururu-o-n-5",
+    "megami": "kururu",
+    "name_ko": "리게이너",
+    "name_jp": "りげいなー",
+    "base_type": "normal",
+    "extra": false,
+    "type": "action",
+    "subtype": "fullpower",
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": null,
+    "text_ko": "----\n <부대> 버림패, 덮은패, 비장패 중에서 미사용 상태도 《전력》도 아닌 다른 여신의 카드를 1장 선택할 수 있다.\n당신은 그 카드를 비용을 지불하지 않고 사용한다. 이 때, 모든 적정거리 수치 / 오라 대미지 / 라이프 대미지 / 봉납치 중 하나를 선택하여 그 수치를 1만큼 증가하거나 감소시킬 수 있다.\n ----\n【상시】이 카드는 덮임패에 있어도 당신의 손패에 있는 것처럼 통상 방법으로 사용할 수 있다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": {
+          "gigyo": "부대"
+        },
+        "ops": [
+          {
+            "op": "custom",
+            "id": "regainer_use_other"
+          }
+        ]
+      }
+    ],
+    "card_flags": [
+      "fullpower"
+    ]
+  },
+  "10-kururu-o-n-6": {
+    "id": "10-kururu-o-n-6",
+    "megami": "kururu",
+    "name_ko": "모듀르~",
+    "name_jp": "もじゅるー",
+    "base_type": "normal",
+    "extra": false,
+    "type": "enhance",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": "3",
+    "text_ko": "【전개중】당신이 《행동》카드를 사용했을 때, 그 해결 후에 기본 동작을 1회 행해도 좋다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "deploy_during",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "modur_action_basic"
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "10-kururu-o-n-7": {
+    "id": "10-kururu-o-n-7",
+    "megami": "kururu",
+    "name_ko": "리플렉터",
+    "name_jp": "りふれくた",
+    "base_type": "normal",
+    "extra": false,
+    "type": "enhance",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": "0",
+    "text_ko": "----\n <공대> 【전개시】이 카드 위에 벚꽃 결정을 4개 더스트로부터 올린다.\n ----\n 【전개중】매 턴 상대의 2번째 《공격》은 무효화된다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "deploy_start",
+        "condition": {
+          "gigyo": "공대"
+        },
+        "ops": [
+          {
+            "op": "custom",
+            "id": "reflector_gain4"
+          }
+        ]
+      },
+      {
+        "trigger": "deploy_during",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "reflector_block2nd"
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "10-kururu-o-s-1": {
+    "id": "10-kururu-o-s-1",
+    "megami": "kururu",
+    "name_ko": "드레~인 데빌",
+    "name_jp": "どれーんでびる",
+    "base_type": "special",
+    "extra": false,
+    "type": "action",
+    "subtype": "reaction",
+    "range": null,
+    "damage": null,
+    "cost": "3",
+    "capacity": null,
+    "text_ko": "상대 오라→자신 오라：1 \n 【사용완료】당신의 사용완료 비장패가 미사용으로 되돌아갈때, 이 카드를 소비를 지불하지 않고 사용해도 좋다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": true,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": [
+          {
+            "op": "move",
+            "from": "opp_aura",
+            "to": "my_aura",
+            "n": 1
+          }
+        ]
+      }
+    ],
+    "prev": {
+      "cost": "2"
+    },
+    "patch_note": "재연: 소모값 3으로 변경 (효과 유지)",
+    "card_flags": [
+      "reaction"
+    ]
+  },
+  "10-kururu-o-s-2": {
+    "id": "10-kururu-o-s-2",
+    "megami": "kururu",
+    "name_ko": "빅 골~렘",
+    "name_jp": "びっぐごーれむ",
+    "base_type": "special",
+    "extra": false,
+    "type": "action",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": "4",
+    "capacity": null,
+    "text_ko": "----\n <대전전> 【사용완료】당신의 종료 페이즈에 상대의 라이프에 1 대미지를 주어도 좋다. 그럴 경우, 패산을 재구성한다.\n ----\n 【사용완료】당신이 《전력》카드를 사용했을 때, 그 해결 후에 기본동작을 1번 해도 좋다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": []
+      }
+    ],
+    "card_flags": []
+  },
+  "10-kururu-o-s-3": {
+    "id": "10-kururu-o-s-3",
+    "megami": "kururu",
+    "name_ko": "인더스트리아",
+    "name_jp": "いんだすとりあ",
+    "base_type": "special",
+    "extra": false,
+    "type": "action",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": "1",
+    "capacity": null,
+    "text_ko": "이 카드에 카드가 봉인되어 있지 않다면, 당신의 손패 또는 버림패에서 《부여》가 아닌 카드 한 장을 골라, 그 카드를 이 카드 밑에 앞면으로 봉인해도 좋다.\n 당신의 추가패에서 「듀~플리기어」를 패산의 밑에 1장 둔다(최대 합계 3장). \n ----\n 【즉재기】당신이 패산을 재구성한다(재구성 후에 미사용으로 되돌린다).",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "industria_seal_duplicate"
+          }
+        ]
+      }
+    ],
+    "card_flags": [],
+    "saiki": {
+      "condition": "always",
+      "immediate": true,
+      "special": "industria"
+    }
+  },
+  "10-kururu-o-s-4": {
+    "id": "10-kururu-o-s-4",
+    "megami": "kururu",
+    "name_ko": "신섭장치:쿠루루식",
+    "name_jp": "神渉装置:枢式",
+    "base_type": "special",
+    "extra": false,
+    "type": "action",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": "3",
+    "capacity": null,
+    "text_ko": "----\n <공공행행행부부> 상대의 비장패를 보고, 그 중 1장을 골라, 그것을 사용완료로 해도 좋다.\n ----\n 상대의 사용완료 비장패를 1장 골라도 좋다. 그 카드를 소비를 지불하지 않고 사용한다(《전력》카드여도 좋다). 그 후, 이 카드를 제외한다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": {
+          "gigyo": "공공행행행부부"
+        },
+        "ops": [
+          {
+            "op": "custom",
+            "id": "sinseop_see_specials"
+          }
+        ]
+      },
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "sinseop_use_opp_special"
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "10-kururu-o-s-3-ex1": {
+    "id": "10-kururu-o-s-3-ex1",
+    "megami": "kururu",
+    "name_ko": "듀~플리기어",
+    "name_jp": "でゅーぷりぎあ",
+    "base_type": "normal",
+    "extra": true,
+    "type": "variable",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": null,
+    "text_ko": "(카드 타입이 정해지지 않은 카드는 사용 할 수 없다) \n 【상시】이 카드는 당신의 「인더스트리아」에 봉인된 카드의 복제가 된다. 단, 이름은 변경되지 않는다.\n (「인더스트리아」가 미사용이라면 복제가 안되었기에, 사용 할 수 없다)",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "duplicate_of_industria"
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "11-thallya-o-n-1": {
+    "id": "11-thallya-o-n-1",
+    "megami": "thallya",
+    "name_ko": "Burning Steam",
+    "name_jp": "Burning Steam",
+    "base_type": "normal",
+    "extra": false,
+    "type": "attack",
+    "subtype": null,
+    "range": "3-7",
+    "damage": "2/1",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "【공격후】기동을 행한다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "attack_after",
+        "condition": null,
+        "ops": [
+          {
+            "op": "kidou"
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "11-thallya-o-n-2": {
+    "id": "11-thallya-o-n-2",
+    "megami": "thallya",
+    "name_ko": "Waving Edge",
+    "name_jp": "Waving Edge",
+    "base_type": "normal",
+    "extra": false,
+    "type": "attack",
+    "subtype": null,
+    "range": "1-3",
+    "damage": "3/1",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "연소 \n 【공격후】기본동작을 1회까지 수행한 뒤, 기동을 수행한다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "attack_after",
+        "condition": null,
+        "ops": [
+          {
+            "op": "basic_free",
+            "n": 1
+          },
+          {
+            "op": "kidou"
+          }
+        ]
+      }
+    ],
+    "card_flags": [
+      "burn"
+    ]
+  },
+  "11-thallya-o-n-3": {
+    "id": "11-thallya-o-n-3",
+    "megami": "thallya",
+    "name_ko": "Shield Charge",
+    "name_jp": "Shield Charge",
+    "base_type": "normal",
+    "extra": false,
+    "type": "attack",
+    "subtype": null,
+    "range": "1",
+    "damage": "3/2",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "연소 \n 【상시】이 《공격》의 대미지에 의해 이동하는 벚꽃 결정은, 더스트나 플레어가 아닌 간격으로 움직인다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "constant",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "shield_dmg_to_distance"
+          }
+        ]
+      }
+    ],
+    "card_flags": [
+      "burn"
+    ]
+  },
+  "11-thallya-o-n-4": {
+    "id": "11-thallya-o-n-4",
+    "megami": "thallya",
+    "name_ko": "Steam Cannon",
+    "name_jp": "Steam Cannon",
+    "base_type": "normal",
+    "extra": false,
+    "type": "attack",
+    "subtype": null,
+    "range": "3-7",
+    "damage": "1/1",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "연소\n전력화: 【상시】 이 《공격》은 거리확대(근1)과 거리확대(원1)을 얻고 +2/+2 된다.\n【공격후】 전력화로 사용하지 않았다면, 당신의 연소상태의 조화결정을 2개 회복한다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "constant",
+        "condition": "as_fullpower",
+        "ops": [
+          {
+            "op": "buff",
+            "target": "this_attack",
+            "aura": 2,
+            "life": 2,
+            "gains": [
+              "near_extend_1",
+              "far_extend_1"
+            ]
+          }
+        ]
+      },
+      {
+        "trigger": "attack_after",
+        "condition": "not_fullpower",
+        "ops": [
+          {
+            "op": "recover_harmony",
+            "n": 2
+          }
+        ]
+      }
+    ],
+    "card_flags": [
+      "burn"
+    ]
+  },
+  "11-thallya-o-n-5": {
+    "id": "11-thallya-o-n-5",
+    "megami": "thallya",
+    "name_ko": "Dual Action",
+    "name_jp": "Stunt",
+    "base_type": "normal",
+    "extra": false,
+    "type": "attack",
+    "subtype": "fullpower",
+    "range": "2-7",
+    "damage": "1/1",
+    "cost": null,
+    "capacity": null,
+    "text_ko": "【공격후】기동을 수행해도 된다. 그 후, 버림패에서 다른 여신의 《전력》이 아닌 《공격》을 1장까지 선택해서 사용해도 된다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "attack_after",
+        "condition": null,
+        "ops": [
+          {
+            "op": "kidou",
+            "optional": true
+          },
+          {
+            "op": "custom",
+            "id": "dual_use_discard_attack"
+          }
+        ]
+      }
+    ],
+    "audit_note": "재연: Stunt→Dual Action 전면 변경",
+    "card_flags": [
+      "fullpower"
+    ]
+  },
+  "11-thallya-o-n-6": {
+    "id": "11-thallya-o-n-6",
+    "megami": "thallya",
+    "name_ko": "Roaring",
+    "name_jp": "Roaring",
+    "base_type": "normal",
+    "extra": false,
+    "type": "action",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": null,
+    "text_ko": "비용으로 머신 조화결정 2개 연소해도 된다. 그럴 경우 집중+1, 플레어(상대)→더스트:1.\n비용으로 집중력 2 지불해도 된다. 그럴 경우 연소된 조화결정 3개 회복.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "roaring_choose"
+          }
+        ]
+      }
+    ],
+    "audit_note": "재연: 상대 집중-1+위축 → 플레어(상대)→더스트:1",
+    "card_flags": []
+  },
+  "11-thallya-o-n-7": {
+    "id": "11-thallya-o-n-7",
+    "megami": "thallya",
+    "name_ko": "Turbo Switch",
+    "name_jp": "Turbo Switch",
+    "base_type": "normal",
+    "extra": false,
+    "type": "action",
+    "subtype": "reaction",
+    "range": null,
+    "damage": null,
+    "cost": null,
+    "capacity": null,
+    "text_ko": "연소 \n 기동을 행한다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": [
+          {
+            "op": "kidou"
+          }
+        ]
+      }
+    ],
+    "card_flags": [
+      "burn",
+      "reaction"
+    ]
+  },
+  "11-thallya-o-s-1": {
+    "id": "11-thallya-o-s-1",
+    "megami": "thallya",
+    "name_ko": "Alpha-Edge",
+    "name_jp": "Alpha-Edge",
+    "base_type": "special",
+    "extra": false,
+    "type": "attack",
+    "subtype": null,
+    "range": "1,3,5,7",
+    "damage": "1/1",
+    "cost": "1",
+    "capacity": null,
+    "text_ko": "【즉재기】당신이 기동으로 간격을 변화시킨다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [],
+    "card_flags": [],
+    "saiki": {
+      "condition": "kidou_changed",
+      "immediate": true
+    }
+  },
+  "11-thallya-o-s-2": {
+    "id": "11-thallya-o-s-2",
+    "megami": "thallya",
+    "name_ko": "Omega-Burst",
+    "name_jp": "Omega-Burst",
+    "base_type": "special",
+    "extra": false,
+    "type": "action",
+    "subtype": "reaction",
+    "range": null,
+    "damage": null,
+    "cost": "4",
+    "capacity": null,
+    "text_ko": "당신의 연소완료 조화결정을 모두 회복한다.\n 대응한, 오라로의 대미지가 「-」 혹은 X 이하의 《공격》은 무효화된다. X는 이 카드로 회복한 조화결정의 갯수와 같다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": [
+          {
+            "op": "recover_harmony",
+            "all": true
+          },
+          {
+            "op": "custom",
+            "id": "omega_cancel"
+          }
+        ]
+      }
+    ],
+    "card_flags": [
+      "reaction"
+    ]
+  },
+  "11-thallya-o-s-4": {
+    "id": "11-thallya-o-s-4",
+    "megami": "thallya",
+    "name_ko": "Julia's BlackBox",
+    "name_jp": "Julia's BlackBox",
+    "base_type": "special",
+    "extra": false,
+    "type": "action",
+    "subtype": "fullpower",
+    "range": null,
+    "damage": null,
+    "cost": "2",
+    "capacity": null,
+    "text_ko": "당신의 머신에 조화결정이 없다면, 당신의 머신은 TransForm하고, 당신의 연소완료 조화결정을 2개 회복한다. 그렇지 않을 경우, 이 카드를 미사용으로 되돌린다.",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "main",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "julia_transform"
+          }
+        ]
+      }
+    ],
+    "card_flags": [
+      "fullpower"
+    ]
+  },
+  "11-thallya-o-s-3": {
+    "id": "11-thallya-o-s-3",
+    "megami": "thallya",
+    "name_ko": "Thallya's Masterpiece",
+    "name_jp": "Thallya's Masterpiece",
+    "base_type": "special",
+    "extra": false,
+    "type": "enhance",
+    "subtype": null,
+    "range": null,
+    "damage": null,
+    "cost": "2",
+    "capacity": "3",
+    "text_ko": "【전개중】당신이 조화결정을 연소시킬 때마다, 머신의 조화결정을 연소됨으로 이동시키는 대신 연소된 조화결정을 머신으로 이동시킨다.\n(연소됨 상태의 조화결정이 부족하다면 연소할 수 없다.)",
+    "text_ko_additional": null,
+    "range_opened": null,
+    "damage_opened": null,
+    "text_opened_ko": null,
+    "patch_verified": false,
+    "effects": [
+      {
+        "trigger": "deploy_during",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "masterpiece_reverse"
+          }
+        ]
+      }
+    ],
+    "card_flags": []
+  },
+  "11-thallya-o-tf-1": {
+    "megami": "thallya",
+    "base_type": "transform",
+    "subtype": null,
+    "cost": null,
+    "capacity": null,
+    "range": null,
+    "damage": null,
+    "prev": null,
+    "extra": true,
+    "effects": [
+      {
+        "trigger": "transform_on",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "yaksha_transform"
+          }
+        ]
+      }
+    ],
+    "card_flags": [],
+    "name_ko": "Form: YAKSHA",
+    "type": "transform",
+    "text_ko": "변형시: 상대는 다음 개시 페이즈에 카드를 1장밖에 뽑을 수 없다. 상대를 위축. / 상시: 머신에 조화결정 없으면 기본동작 불가. / 추가기본동작 Beta-Edge: 공격 2,4,6,8 2/1 【공격후】기동.",
+    "_summon_key": "tf_yaksha"
+  },
+  "11-thallya-o-tf-2": {
+    "megami": "thallya",
+    "base_type": "transform",
+    "subtype": null,
+    "cost": null,
+    "capacity": null,
+    "range": null,
+    "damage": null,
+    "prev": null,
+    "extra": true,
+    "effects": [
+      {
+        "trigger": "transform_on",
+        "condition": null,
+        "ops": [
+          {
+            "op": "custom",
+            "id": "naga_transform"
+          }
+        ]
+      }
+    ],
+    "card_flags": [],
+    "name_ko": "Form: NAGA",
+    "type": "transform",
+    "text_ko": "변형시: 상대 플레어 3+면 2가 되도록 더스트로. / 추가기본동작 Gamma-Ray: 상대 패산 위 1장 버림.",
+    "_summon_key": "tf_naga"
+  },
+  "11-thallya-o-tf-3": {
+    "megami": "thallya",
+    "base_type": "transform",
+    "subtype": null,
+    "cost": null,
+    "capacity": null,
+    "range": null,
+    "damage": null,
+    "prev": null,
+    "extra": true,
+    "effects": [
+      {
+        "trigger": "transform_on",
+        "condition": null,
+        "ops": [
+          {
+            "op": "draw",
+            "n": 2
+          },
+          {
+            "op": "custom",
+            "id": "garuda_no_hand_limit"
+          }
+        ]
+      }
+    ],
+    "card_flags": [],
+    "name_ko": "Form: GARUDA",
+    "type": "transform",
+    "text_ko": "변형시: 카드 2장 뽑기. 이번 턴 손패 상한 없음. / 추가기본동작 Delta-Wing: 간격 7 이하면 더스트→간격:1.",
+    "_summon_key": "tf_garuda"
+  }
+}
