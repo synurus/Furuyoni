@@ -8,6 +8,11 @@
     python -m ai.eval_champion --model data/loop_ci/net_iter5.npz --two --workers 8
 
 선후공과 여신 배정을 번갈아 주어 자리 이점을 상쇄한다.
+
+--net-blend 는 리프 평가를 (가치망 : 손짠 evaluate) 로 섞는 비율이다.
+1.0=순수 가치망, 0.0=순수 손짠평가. 롤아웃 수와 코드 경로가 완전히 같으므로,
+0.0 과 1.0 을 같은 조건에서 비교하면 "학습한 망이 손짠 평가보다 나은가"를
+탐색 강도와 분리해서 잴 수 있다. 이 비교가 규모를 더 붓기 전에 할 일이다.
 """
 
 import os
@@ -63,7 +68,8 @@ def _play_chunk(payload):
             state = new_game(m0, m1, seed=gid, first=gid % 2)
 
         net = NetMCBot(model=model, seed=gid, rollouts=cfg["rollouts"],
-                       prune_top=4, horizon=cfg["horizon"])
+                       prune_top=4, horizon=cfg["horizon"],
+                       net_blend=cfg["net_blend"])
         opp = BOTS[cfg["opponent"]](gid + 1)
         agents = [net, opp] if net_side == 0 else [opp, net]
         driver = _DirectDriver(agents)
@@ -88,6 +94,8 @@ def main():
                     help=f"상대 봇 {list(BOTS.keys())}")
     ap.add_argument("--games", type=int, default=300)
     ap.add_argument("--rollouts", type=int, default=12)
+    ap.add_argument("--net-blend", type=float, default=1.0,
+                    help="리프 평가 비율 1.0=가치망 / 0.0=손짠평가")
     ap.add_argument("--horizon", type=int, default=8)
     ap.add_argument("--max-turns", type=int, default=200)
     ap.add_argument("--two", action="store_true", help="2여신 안전구축 게임")
@@ -97,10 +105,12 @@ def main():
 
     cfg = {"model": args.model, "opponent": args.opponent,
            "rollouts": args.rollouts, "horizon": args.horizon,
-           "max_turns": args.max_turns, "two": args.two}
+           "max_turns": args.max_turns, "two": args.two,
+           "net_blend": args.net_blend}
 
     print(f"{os.path.basename(args.model)} vs {args.opponent} | "
           f"{args.games}판 | {'2여신' if args.two else '단일여신'} | "
+          f"롤아웃 {args.rollouts} | net_blend {args.net_blend} | "
           f"워커 {args.workers}")
     t0 = time.time()
 
